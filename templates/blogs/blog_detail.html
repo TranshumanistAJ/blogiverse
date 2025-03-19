@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ post.title }} - Blogiverse</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .post { max-width: 800px; margin: 0 auto; }
+        img { max-width: 100%; height: auto; border-radius: 5px; }
+        .likes { margin: 20px 0; }
+        .comments { margin-top: 20px; }
+        .comment { border-top: 1px solid #ccc; padding: 10px 0; }
+    </style>
+</head>
+<body>
+    <div class="post">
+        <h1>{{ post.title }}</h1>
+        <p>By {{ post.author }} - {{ post.created_at }}</p>
+        {% if post.photo %}
+            <img src="{{ post.photo.url }}" alt="{{ post.author }}'s photo">
+        {% endif %}
+        <p>{{ post.content }}</p>
+        <p>Email: <a href="mailto:ajdeutschland103@hotmail.com">ajdeutschland103@hotmail.com</a></p>
+        <div class="likes">
+            <p>Likes: {{ post.likes.count }}</p>
+            
+        </div>
+        <div class="comments">
+            <h3>Comments</h3>
+            {% for comment in post.comments.all %}
+                <div class="comment">
+                    <p>{{ comment.content }}</p>
+                    <small>By {{ comment.author }} - {{ comment.created_at }}</small>
+                </div>
+            {% empty %}
+                <p>No comments yet.</p>
+            {% endfor %}
+        </div>
+        <a href="{% url 'topic_list' post.topic %}">Back to {{ post.topic }}</a>
+    </div>
+</body>
+</html>

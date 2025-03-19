@@ -6,7 +6,7 @@
     <title>Blog Platform</title>
     <style>
         body {
-            background-image: url('/static/images/background.jpg'); 
+            background-image: url('/static/images/background.jpg');
             background-size: cover;
             height: 100vh;
             margin: 0;
@@ -17,19 +17,30 @@
         }
         .topic-button {
             position: absolute;
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 15px 25px;
+            border: 2px solid #333;
+            border-radius: 8px;
             cursor: pointer;
-            transition: transform 0.3s;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         .topic-button:hover {
-            transform: scale(1.1); /* Grows on hover */
+            transform: scale(1.05);
+            background-color: #f5f5f5;
+            border-color: #555;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        .topic-button a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
         }
         .topic-button small {
             display: block;
-            font-size: 10px;
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
         }
         .auth-box {
             background-color: rgba(255, 255, 255, 0.9);

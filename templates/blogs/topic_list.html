@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ topic }} - Blogiverse</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .post { margin-bottom: 20px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
+        .post a { text-decoration: none; color: #333; }
+    </style>
+</head>
+<body>
+    <h1>{{ topic }}</h1>
+    {% for post in posts %}
+        <div class="post">
+            <h2><a href="{% url 'blog_detail' post.id %}">{{ post.title }}</a></h2>
+            <p>By {{ post.author }}</p>
+        </div>
+    {% empty %}
+        <p>No posts yet!</p>
+    {% endfor %}
+    <a href="/">Back to Home</a>
+</body>
+</html>

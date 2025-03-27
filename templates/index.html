@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Platform</title>
+    <title>Blogiverse</title>
     <style>
         body {
             background-image: url('/static/images/background.jpg');
@@ -15,7 +13,7 @@
             align-items: center;
             font-family: Arial, sans-serif;
         }
-        .topic-button {
+        .forum-button {
             position: absolute;
             background-color: rgba(255, 255, 255, 0.9);
             padding: 15px 25px;
@@ -25,18 +23,18 @@
             transition: all 0.3s ease;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        .topic-button:hover {
+        .forum-button:hover {
             transform: scale(1.05);
             background-color: #f5f5f5;
             border-color: #555;
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
         }
-        .topic-button a {
+        .forum-button a {
             text-decoration: none;
             color: #333;
             font-weight: bold;
         }
-        .topic-button small {
+        .forum-button small {
             display: block;
             font-size: 12px;
             color: #666;
@@ -54,47 +52,26 @@
             text-decoration: none;
             color: #333;
         }
+        /* Positioning for buttons */
+        .forum-button:nth-child(1) { top: 20%; left: 20%; }
+        .forum-button:nth-child(2) { top: 20%; right: 20%; }
+        .forum-button:nth-child(3) { top: 40%; left: 10%; }
+        .forum-button:nth-child(4) { top: 40%; right: 10%; }
+        .forum-button:nth-child(5) { top: 60%; left: 15%; }
+        .forum-button:nth-child(6) { top: 60%; right: 15%; }
+        .forum-button:nth-child(7) { bottom: 20%; left: 25%; }
     </style>
 </head>
 <body>
-    <!-- Topic Buttons -->
-    <button class="topic-button" style="top: 10%; left: 20%;">
-        <a href="{% url 'topic_list' 'Faith & Spirituality' %}" style="text-decoration: none; color: inherit;">
-            Faith & Spirituality
-            <small>My religious journey, Faith & Doubt</small>
-        </a>
-    </button>
-    <button class="topic-button" style="top: 30%; right: 15%;">
-        Personal Growth
-        <small>Trauma, stories of overcoming hardship, Lessons from pain</small>
-    </button>
-    <button class="topic-button" style="bottom: 20%; left: 10%;">
-        Love & Relationships
-        <small>Family Bonds & Breaks, Romance and hard breaks, Friendship & Betrayal, Love with Animals</small>
-    </button>
-    <button class="topic-button" style="top: 50%; left: 65%;">
-        Self Discovery
-        <small>Reason for self existence, mid-life crisis, Living with chronic mental illness</small>
-    </button>
-    <button class="topic-button" style="bottom: 10%; right: 25%;">
-        Mystical & Unexplained Experiences
-        <small>Near Death Experience, Synchronicity & Signs, Moments that felt like fate</small>
-    </button>
-    <button class="topic-button" style="top: 15%; right: 30%;">
-        A Trip to the Unknown
-        <small>Experiences of people who live on the road or travel constantly</small>
-    </button>
-    <button class="topic-button" style="bottom: 50%; left: 15%;">
-        Unconventional Trips to Dangerous Places
-        <small>Explore risky adventures</small>
-    </button>
-
-    <!-- Auth Section -->
+    {% for forum in forums %}
+        <div class="forum-button">
+            <a href="{% url 'topic_list' forum_name=forum.name %}">{{ forum.name }}</a>
+            <small>{{ forum.description }}</small>
+        </div>
+    {% endfor %}
     <div class="auth-box">
-        <h2>Welcome</h2>
+        <a href="{% url 'account_login' %}">Login</a>
         <a href="{% url 'account_signup' %}">Sign Up</a>
-        <a href="{% url 'account_login' %}">Sign In</a>
-        <a href="/">Continue as Guest</a>
     </div>
 </body>
 </html>

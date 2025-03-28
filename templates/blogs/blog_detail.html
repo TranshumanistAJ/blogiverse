@@ -16,6 +16,9 @@
     <div class="post">
         <h1>{{ post.title }}</h1>
         <p>By {{ post.author }} - {{ post.created_at }}</p>
+        {% if user.is_authenticated and user == post.author %}
+            <a href="{% url 'edit_post' post_id=post.id %}">Edit Post</a>
+        {% endif %}
         {% if post.photo %}
             <img src="{{ post.photo.url }}" alt="{{ post.author }}'s photo">
         {% endif %}
@@ -23,7 +26,6 @@
         <p>Email: <a href="mailto:ajdeutschland103@hotmail.com">ajdeutschland103@hotmail.com</a></p>
         <div class="likes">
             <p>Likes: {{ post.likes.count }}</p>
-            
         </div>
         <div class="comments">
             <h3>Comments</h3>
@@ -36,7 +38,7 @@
                 <p>No comments yet.</p>
             {% endfor %}
         </div>
-        <a href="{% url 'topic_list' post.topic %}">Back to {{ post.topic }}</a>
+        <a href="{% url 'topic_list' forum_name=post.forum.name %}">Back to {{ post.forum.name }}</a>
     </div>
 </body>
 </html>

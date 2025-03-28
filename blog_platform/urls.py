@@ -11,5 +11,6 @@ urlpatterns = [
     path('blogs/<str:forum_name>/', views.topic_list, name='topic_list'),
     path('blogs/post/<int:post_id>/', views.blog_detail, name='blog_detail'),
     path('blogs/create/', views.create_post, name='create_post'),
-    path('blogs/post/<int:post_id>/edit/', views.edit_post, name='edit_post'),  # New URL
+    path('blogs/post/<int:post_id>/edit/', views.edit_post, name='edit_post'),
+    path('blogs/post/<int:post_id>/delete/', views.delete_post, name='delete_post'),  # New URL
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

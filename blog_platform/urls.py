@@ -13,5 +13,5 @@ urlpatterns = [
     path('blogs/create/', views.create_post, name='create_post'),
     path('blogs/post/<int:post_id>/edit/', views.edit_post, name='edit_post'),
     path('blogs/post/<int:post_id>/delete/', views.delete_post, name='delete_post'),
-    path('blogs/create-forum/', views.create_forum, name='create_forum'),  # New URL
+    path('blogs/create-forum/', views.create_forum, name='create_forum'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

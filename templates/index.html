@@ -1,18 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Blogiverse</title>
+{% extends 'base.html' %}
+
+{% block title %}Blogiverse{% endblock %}
+
+{% block extra_css %}
     <style>
-        body {
-            background-image: url('/static/images/background.jpg');
-            background-size: cover;
-            height: 100vh;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: Arial, sans-serif;
-        }
         .forum-button {
             position: absolute;
             background-color: rgba(255, 255, 255, 0.9);
@@ -40,19 +31,6 @@
             color: #666;
             margin-top: 5px;
         }
-        .auth-box {
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-        }
-        .auth-box a {
-            display: block;
-            margin: 10px 0;
-            text-decoration: none;
-            color: #333;
-        }
-        /* Positioning for buttons */
         .forum-button:nth-child(1) { top: 20%; left: 20%; }
         .forum-button:nth-child(2) { top: 20%; right: 20%; }
         .forum-button:nth-child(3) { top: 40%; left: 10%; }
@@ -61,17 +39,13 @@
         .forum-button:nth-child(6) { top: 60%; right: 15%; }
         .forum-button:nth-child(7) { bottom: 20%; left: 25%; }
     </style>
-</head>
-<body>
+{% endblock %}
+
+{% block content %}
     {% for forum in forums %}
         <div class="forum-button">
             <a href="{% url 'topic_list' forum_name=forum.name %}">{{ forum.name }}</a>
             <small>{{ forum.description }}</small>
         </div>
     {% endfor %}
-    <div class="auth-box">
-        <a href="{% url 'account_login' %}">Login</a>
-        <a href="{% url 'account_signup' %}">Sign Up</a>
-    </div>
-</body>
-</html>
+{% endblock %}

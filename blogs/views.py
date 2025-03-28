@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Forum, BlogPost
-from .forms import BlogPostForm
+from .forms import BlogPostForm, ForumForm  # Added ForumForm
 from django.contrib.auth.decorators import login_required
 
 def home(request):
@@ -43,14 +43,27 @@ def edit_post(request, post_id):
         form = BlogPostForm(instance=post)
     return render(request, 'blogs/edit_post.html', {'form': form, 'post': post})
 
-# New view for deleting posts
 @login_required
 def delete_post(request, post_id):
     post = get_object_or_404(BlogPost, id=post_id)
-    if post.author != request.user:  # Only author can delete
+    if post.author != request.user:
         return redirect('blog_detail', post_id=post.id)
-    if request.method == 'POST':  # Confirm deletion via POST
-        forum_name = post.forum.name  # Store forum name before deletion
+    if request.method == 'POST':
+        forum_name = post.forum.name
         post.delete()
         return redirect('topic_list', forum_name=forum_name)
     return render(request, 'blogs/delete_post.html', {'post': post})
+
+# New view for creating forums (admin only)
+@login_required
+def create_forum(request):
+    if not request.user.is_staff:  # Only admins (is_staff=True) can access
+        return redirect('home')
+    if request.method == 'POST':
+        form = ForumForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = ForumForm()
+    return render(request, 'blogs/create_forum.html', {'form': form})

@@ -4,8 +4,15 @@
 
 {% block extra_css %}
     <style>
+        .forum-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
         .forum-button {
-            position: absolute;
             background-color: rgba(255, 255, 255, 0.9);
             padding: 15px 25px;
             border: 2px solid #333;
@@ -13,6 +20,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
         .forum-button:hover {
             transform: scale(1.05);
@@ -31,21 +39,16 @@
             color: #666;
             margin-top: 5px;
         }
-        .forum-button:nth-child(1) { top: 20%; left: 20%; }
-        .forum-button:nth-child(2) { top: 20%; right: 20%; }
-        .forum-button:nth-child(3) { top: 40%; left: 10%; }
-        .forum-button:nth-child(4) { top: 40%; right: 10%; }
-        .forum-button:nth-child(5) { top: 60%; left: 15%; }
-        .forum-button:nth-child(6) { top: 60%; right: 15%; }
-        .forum-button:nth-child(7) { bottom: 20%; left: 25%; }
     </style>
 {% endblock %}
 
 {% block content %}
-    {% for forum in forums %}
-        <div class="forum-button">
-            <a href="{% url 'topic_list' forum_name=forum.name %}">{{ forum.name }}</a>
-            <small>{{ forum.description }}</small>
-        </div>
-    {% endfor %}
+    <div class="forum-container">
+        {% for forum in forums %}
+            <div class="forum-button">
+                <a href="{% url 'topic_list' forum_name=forum.name %}">{{ forum.name }}</a>
+                <small>{{ forum.description }}</small>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}

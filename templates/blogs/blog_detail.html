@@ -24,7 +24,11 @@
             <img src="{{ post.photo.url }}" alt="{{ post.author }}'s photo">
         {% endif %}
         <p>{{ post.content }}</p>
-        <p>Email: <a href="mailto:ajdeutschland103@hotmail.com">ajdeutschland103@hotmail.com</a></p>
+        {% if user.is_authenticated %}
+            <p>Email: <a href="mailto:{{ post.author.email }}">{{ post.author.email }}</a></p>
+        {% else %}
+            <p>Email: [Login to view author email]</p>
+        {% endif %}
         <div class="likes">
             <p>Likes: {{ post.likes.count }}</p>
         </div>

@@ -11,6 +11,14 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            margin: 0; /* Reset default margin */
+        }
+        .navbar {
+            position: fixed; /* Keep navbar at the top */
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000; /* Ensure it’s above other content */
         }
         .auth-container {
             background-color: rgba(255, 255, 255, 0.9);
@@ -18,12 +26,13 @@
             border-radius: 10px;
             text-align: center;
             width: 300px;
+            margin-top: 60px; /* Add space below navbar */
         }
         .auth-container h2 { margin-bottom: 20px; }
         .auth-container form { display: flex; flex-direction: column; }
         .auth-container button {
             padding: 10px;
-            background-color: #d9534f; /* Red for logout */
+            background-color: #d9534f;
             color: white;
             border: none;
             border-radius: 5px;

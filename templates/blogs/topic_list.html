@@ -1,16 +1,62 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{{ forum.name }}</title>
-</head>
-<body>
-    <h1>{{ forum.name }}</h1>
-    {% for post in posts %}
-        <h2><a href="{% url 'blog_detail' post_id=post.id %}">{{ post.title }}</a></h2>
-        <p>By {{ post.author }} on {{ post.created_at }}</p>
-        {% if post.photo %}
-            <img src="{{ post.photo.url }}" alt="{{ post.title }}" style="max-width: 300px;">
-        {% endif %}
-    {% endfor %}
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}{{ forum.name }} - Blogiverse{% endblock %}
+
+{% block extra_css %}
+    <style>
+        body {
+            background-image: url('/static/images/background.jpg');
+            background-size: cover;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .topic-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .topic-container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .post-item {
+            padding: 15px;
+            border-bottom: 1px solid #ccc;
+        }
+        .post-item:last-child {
+            border-bottom: none;
+        }
+        .post-item a {
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .post-item a:hover {
+            color: #555;
+        }
+        .post-item img {
+            max-width: 300px;
+            height: auto;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="topic-container">
+        <h1>{{ forum.name }}</h1>
+        {% for post in posts %}
+            <div class="post-item">
+                <h2><a href="{% url 'blog_detail' post_id=post.id %}">{{ post.title }}</a></h2>
+                <p>By {{ post.author }} on {{ post.created_at }}</p>
+                {% if post.photo %}
+                    <img src="{{ post.photo.url }}" alt="{{ post.title }}">
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

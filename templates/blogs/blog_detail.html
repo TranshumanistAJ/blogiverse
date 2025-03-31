@@ -22,8 +22,8 @@
             margin-bottom: 10px;
         }
         .post-container img {
-            max-width: 300px; /* Reduced from 100% */
-            max-height: 450px; /* Added max-height */
+            max-width: 300px;
+            max-height: 450px;
             width: auto;
             height: auto;
             border-radius: 5px;
@@ -58,7 +58,7 @@
         {% if post.photo %}
             <img src="{{ post.photo.url }}" alt="{{ post.author }}'s photo">
         {% endif %}
-        <p>{{ post.content }}</p>
+        <div>{{ post.content|linebreaks }}</div> <!-- Changed from <p>{{ post.content }}</p> -->
         {% if user.is_authenticated %}
             <p>Email: <a href="mailto:{{ post.author.email }}">{{ post.author.email }}</a></p>
         {% else %}

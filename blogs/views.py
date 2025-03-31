@@ -54,10 +54,10 @@ def delete_post(request, post_id):
         return redirect('topic_list', forum_name=forum_name)
     return render(request, 'blogs/delete_post.html', {'post': post})
 
-# New view for creating forums (admin only)
+
 @login_required
 def create_forum(request):
-    if not request.user.is_staff:  # Only admins (is_staff=True) can access
+    if not request.user.is_staff:  
         return redirect('home')
     if request.method == 'POST':
         form = ForumForm(request.POST)

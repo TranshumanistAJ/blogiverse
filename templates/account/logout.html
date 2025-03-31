@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}Sign Out - Blogiverse{% endblock %}
+
+{% block extra_css %}
+    <style>
+        body {
+            background-image: url('/static/images/loginandsignupbackground.jpg');
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .auth-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 300px;
+        }
+        .auth-container h2 { margin-bottom: 20px; }
+        .auth-container form { display: flex; flex-direction: column; }
+        .auth-container button {
+            padding: 10px;
+            background-color: #d9534f; /* Red for logout */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+        .auth-container button:hover { background-color: #c9302c; }
+        .auth-container a {
+            color: #333;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="auth-container">
+        <h2>Sign Out</h2>
+        <p>Are you sure you want to sign out?</p>
+        <form method="post" action="{% url 'account_logout' %}">
+            {% csrf_token %}
+            <button type="submit">Sign Out</button>
+            <a href="{% url 'home' %}">Cancel</a>
+        </form>
+    </div>
+{% endblock %}

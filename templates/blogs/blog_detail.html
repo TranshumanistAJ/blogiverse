@@ -1,24 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ post.title }} - Blogiverse</title>
+{% extends 'base.html' %}
+
+{% block title %}{{ post.title }} - Blogiverse{% endblock %}
+
+{% block extra_css %}
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        .post { max-width: 800px; margin: 0 auto; }
-        img { max-width: 100%; height: auto; border-radius: 5px; }
+        body {
+            background-image: url('/static/images/background.jpg');
+            background-size: cover;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .post-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .post-container h1 {
+            margin-bottom: 10px;
+        }
+        .post-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .post-container a {
+            color: #333;
+            text-decoration: none;
+        }
+        .post-container a:hover {
+            color: #555;
+        }
         .likes { margin: 20px 0; }
         .comments { margin-top: 20px; }
-        .comment { border-top: 1px solid #ccc; padding: 10px 0; }
+        .comment {
+            border-top: 1px solid #ccc;
+            padding: 10px 0;
+        }
     </style>
-</head>
-<body>
-    <div class="post">
+{% endblock %}
+
+{% block content %}
+    <div class="post-container">
         <h1>{{ post.title }}</h1>
         <p>By {{ post.author }} - {{ post.created_at }}</p>
         {% if user.is_authenticated and user == post.author %}
-            <a href="{% url 'edit_post' post_id=post.id %}">Edit Post</a> |
-            <a href="{% url 'delete_post' post_id=post.id %}">Delete Post</a>
+            <p>
+                <a href="{% url 'edit_post' post_id=post.id %}">Edit Post</a> |
+                <a href="{% url 'delete_post' post_id=post.id %}">Delete Post</a>
+            </p>
         {% endif %}
         {% if post.photo %}
             <img src="{{ post.photo.url }}" alt="{{ post.author }}'s photo">
@@ -43,7 +76,6 @@
                 <p>No comments yet.</p>
             {% endfor %}
         </div>
-        <a href="{% url 'topic_list' forum_name=post.forum.name %}">Back to {{ post.forum.name }}</a>
+        <p><a href="{% url 'topic_list' forum_name=post.forum.name %}">Back to {{ post.forum.name }}</a></p>
     </div>
-</body>
-</html>
+{% endblock %}

@@ -38,9 +38,10 @@
             color: #555;
         }
         .post-item img {
-            width: 100%; /* Full width of post-item */
-            max-width: 760px; /* Fits within padding of topic-container */
-            height: auto;
+            width: 100%; /* Fills post-item width */
+            max-width: 760px; /* Fits within padding */
+            max-height: 300px; /* Caps height */
+            object-fit: contain; /* Scales proportionally */
             border-radius: 5px;
             margin-top: 10px;
             display: block;

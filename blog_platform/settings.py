@@ -15,10 +15,14 @@ ALLOWED_HOSTS = [
     'blogiverse.herokuapp.com',
     '8000-transhumanis-blogiverse-viuld5f44ox.ws-eu118.gitpod.io',
     'localhost',
-    '127.0.0.1'
+    '127.0.0.1',
+    '.herokuapp.com'  # Catch-all for Heroku
 ]
 
-CSRF_TRUSTED_ORIGINS = ['https://8000-transhumanis-blogiverse-viuld5f44ox.ws-eu118.gitpod.io']
+CSRF_TRUSTED_ORIGINS = [
+    'https://blogiverse.herokuapp.com',  # Add Heroku
+    'https://8000-transhumanis-blogiverse-viuld5f44ox.ws-eu118.gitpod.io'
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -47,7 +51,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'allauth.account.middleware.AccountMiddleware',  # Added here
+    'allauth.account.middleware.AccountMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]

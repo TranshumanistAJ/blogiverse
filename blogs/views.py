@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import JsonResponse
 from .models import Forum, BlogPost, Comment
-from .forms import BlogPostForm
+from .forms import BlogPostForm, ForumForm
 
 def home(request):
     forums = Forum.objects.all()
@@ -31,6 +31,18 @@ def create_post(request):
     else:
         form = BlogPostForm()
     return render(request, 'blogs/create_post.html', {'form': form})
+
+@login_required
+def create_forum(request):
+    if request.method == 'POST':
+        form = ForumForm(request.POST)
+        if form.is_valid():
+            forum = form.save()
+            messages.success(request, "Forum created successfully!")
+            return redirect('topic_list', forum_name=forum.name)
+    else:
+        form = ForumForm()
+    return render(request, 'blogs/create_forum.html', {'form': form})
 
 @login_required
 def edit_post(request, post_id):

@@ -5,7 +5,7 @@ from django.http import JsonResponse
 from .models import Forum, BlogPost, Comment
 from .forms import BlogPostForm
 
-def index(request):
+def home(request):
     forums = Forum.objects.all()
     return render(request, 'index.html', {'forums': forums})
 

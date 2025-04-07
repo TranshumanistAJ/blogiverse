@@ -1,12 +1,15 @@
 from pathlib import Path
 import os
+import sys
 import dj_database_url
-import logging
+if os.path.isfile('env.py'):
+    import env
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
-SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-qo#_&@v22q(gh1rq8!0y*23#!pq9tliasondj&ojhl9yicmhoj')
-DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+SECRET_KEY = os.environ.get("SECRET_KEY")
+DEBUG = False
 ALLOWED_HOSTS = ['blogiverse.herokuapp.com', 'localhost', '127.0.0.1', '.herokuapp.com']
 
 CSRF_TRUSTED_ORIGINS = ['https://blogiverse.herokuapp.com']
@@ -26,6 +29,8 @@ INSTALLED_APPS = [
 ]
 
 SITE_ID = 1
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
@@ -49,7 +54,7 @@ ROOT_URLCONF = 'blog_platform.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [TEMPLATES_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -65,8 +70,11 @@ TEMPLATES = [
 WSGI_APPLICATION = 'blog_platform.wsgi.application'
 
 DATABASES = {
-    'default': dj_database_url.config(conn_max_age=600)
+    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
+
+if 'test' in sys.argv:
+    DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
@@ -89,8 +97,3 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
-
-logging.basicConfig(level=logging.DEBUG)

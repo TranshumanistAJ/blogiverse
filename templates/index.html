@@ -5,24 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blogiverse</title>
     <style>
-        body { background: url('/static/images/background.jpg') no-repeat center center fixed; background-size: cover; margin: 0; font-family: Arial; }
-        .container { max-width: 800px; margin: 20px auto; padding: 20px; background: rgba(255, 255, 255, 0.9); border-radius: 8px; }
+        body { font-family: Arial; margin: 0; }
+        .container { max-width: 800px; margin: 20px auto; padding: 20px; }
         h1 { text-align: center; }
         .forum-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
         .forum-item { padding: 10px; background: #f0f0f0; border-radius: 5px; text-align: center; }
         a { color: #333; text-decoration: none; }
         a:hover { color: #555; }
+        .nav { text-align: center; margin-bottom: 20px; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to Blogiverse</h1>
+    <div class="nav">
         {% if user.is_authenticated %}
             <p>Welcome, {{ user.username }}! <a href="{% url 'account_logout' %}">Logout</a></p>
-            <p><a href="{% url 'create_post' %}">Create New Post</a></p>
         {% else %}
             <p><a href="{% url 'account_login' %}">Login</a> | <a href="{% url 'account_signup' %}">Sign Up</a></p>
         {% endif %}
+    </div>
+    <div class="container">
+        <h1>Welcome to Blogiverse</h1>
         <div class="forum-list">
             {% for forum in forums %}
                 <div class="forum-item">

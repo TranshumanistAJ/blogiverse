@@ -1,65 +1,38 @@
-{% extends 'base.html' %}
-
-{% block title %}{{ forum.name }} - Blogiverse{% endblock %}
-
-{% block extra_css %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ forum.name }} - Blogiverse</title>
     <style>
-        body {
-            background-image: url('/static/images/background.jpg');
-            background-size: cover;
-            min-height: 100vh;
-            margin: 0;
-        }
-        .topic-container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .topic-container h1 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .post-item {
-            padding: 15px;
-            border-bottom: 1px solid #ccc;
-        }
-        .post-item:last-child {
-            border-bottom: none;
-        }
-        .post-item a {
-            color: #333;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .post-item a:hover {
-            color: #555;
-        }
-        .post-item img {
-            width: 100%; /* Fills post-item width */
-            max-width: 760px; /* Fits within padding */
-            max-height: 300px; /* Caps height */
-            object-fit: contain; /* Scales proportionally */
-            border-radius: 5px;
-            margin-top: 10px;
-            display: block;
-        }
+        body { font-family: Arial; margin: 0; background: #f0f0f0; }
+        .container { max-width: 800px; margin: 20px auto; padding: 20px; background: white; border-radius: 8px; }
+        h1 { text-align: center; }
+        .post-list { display: flex; flex-direction: column; gap: 10px; }
+        .post-item { padding: 10px; background: #e0e0e0; border-radius: 5px; }
+        img { max-width: 100px; height: auto; }
+        .nav { text-align: center; margin-bottom: 20px; }
     </style>
-{% endblock %}
-
-{% block content %}
-    <div class="topic-container">
-        <h1>{{ forum.name }}</h1>
-        {% for post in posts %}
-            <div class="post-item">
-                <h2><a href="{% url 'blog_detail' post_id=post.id %}">{{ post.title }}</a></h2>
-                <p>By {{ post.author }} on {{ post.created_at }}</p>
-                {% if post.photo %}
-                    <img src="{{ post.photo.url }}" alt="{{ post.title }}">
-                {% endif %}
-            </div>
-        {% endfor %}
+</head>
+<body>
+    <div class="nav">
+        {% if user.is_authenticated %}
+            <p>Welcome, {{ user.username }}! <a href="{% url 'account_logout' %}">Logout</a></p>
+        {% else %}
+            <p><a href="{% url 'account_login' %}">Login</a> | <a href="{% url 'account_signup' %}">Sign Up</a></p>
+        {% endif %}
     </div>
-{% endblock %}
+    <div class="container">
+        <h1>{{ forum.name }}</h1>
+        <div class="post-list">
+            {% for post in posts %}
+                <div class="post-item">
+                    <h2><a href="{% url 'blog_detail' post_id=post.id %}">{{ post.title }}</a></h2>
+                    <img src="{{ post.photo.url }}" alt="{{ post.title }}">
+                    <p>{{ post.content|truncatewords:20 }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

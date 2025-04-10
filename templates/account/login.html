@@ -1,41 +1,36 @@
-{% extends 'base.html' %}
-
-{% block title %}Sign In - Blogiverse{% endblock %}
-
-{% block extra_css %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Blogiverse</title>
     <style>
-        body {
-            background-image: url('/static/images/loginandsignupbackground.jpg');
-            background-size: cover;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .auth-container {
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            width: 300px;
-        }
-        .auth-container h2 { margin-bottom: 20px; }
-        .auth-container form { display: flex; flex-direction: column; }
-        .auth-container input { margin: 10px 0; padding: 8px; border: 1px solid #ccc; border-radius: 5px; }
-        .auth-container button { padding: 10px; background-color: #333; color: white; border: none; border-radius: 5px; cursor: pointer; }
-        .auth-container button:hover { background-color: #555; }
-        .auth-container a { color: #333; text-decoration: none; margin-top: 10px; }
+        body { font-family: Arial; margin: 0; background: #f0f0f0; }
+        .container { max-width: 400px; margin: 20px auto; padding: 20px; background: white; border-radius: 8px; }
+        h1 { text-align: center; }
+        .nav { text-align: center; margin-bottom: 20px; }
+        form { display: flex; flex-direction: column; gap: 10px; }
+        input { padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+        button { padding: 10px; background: #333; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #555; }
     </style>
-{% endblock %}
-
-{% block content %}
-    <div class="auth-container">
-        <h2>Sign In</h2>
+</head>
+<body>
+    <div class="nav">
+        <p><a href="{% url 'home' %}">Blogiverse</a> | 
+        {% if user.is_authenticated %}
+            <a href="{% url 'account_logout' %}">Logout</a>
+        {% else %}
+            <a href="{% url 'account_login' %}">Login</a> | <a href="{% url 'account_signup' %}">Sign Up</a>
+        {% endif %}</p>
+    </div>
+    <div class="container">
+        <h1>Login</h1>
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit">Sign In</button>
+            <button type="submit">Login</button>
         </form>
-        <a href="{% url 'account_signup' %}">Need an account? Sign Up</a>
     </div>
-{% endblock %}
+</body>
+</html>

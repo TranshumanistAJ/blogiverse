@@ -13,7 +13,18 @@
         img { max-width: 100px; height: auto; }
         .nav { text-align: center; margin-bottom: 20px; }
         .actions { margin-top: 10px; }
+        button { padding: 5px; background: #333; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #555; }
     </style>
+    <script>
+        function likePost(postId) {
+            fetch(`/blogs/like/${postId}/`, { method: 'POST', headers: {'X-CSRFToken': '{{ csrf_token }}'} })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById(`likes-${postId}`).innerText = `Likes: ${data.likes_count}`;
+                });
+        }
+    </script>
 </head>
 <body>
     <div class="nav">
@@ -31,6 +42,13 @@
                     <h2><a href="{% url 'blog_detail' post_id=post.id %}">{{ post.title }}</a></h2>
                     <img src="/static/blog_photos/{{ post.photo }}" alt="{{ post.title }}">
                     <p>{{ post.content }}</p>
+                    <div class="actions">
+                        {% if user.is_authenticated %}
+                            <button onclick="likePost({{ post.id }})">Like</button>
+                            <span id="likes-{{ post.id }}">Likes: {{ post.likes.count }}</span>
+                            <a href="{% url 'blog_detail' post_id=post.id %}">Comment</a>
+                        {% endif %}
+                    </div>
                 </div>
             {% endfor %}
         </div>

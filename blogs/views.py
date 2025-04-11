@@ -16,7 +16,8 @@ def topic_list(request, forum_name):
 
 def blog_detail(request, post_id):
     post = get_object_or_404(BlogPost, id=post_id)
-    return render(request, 'blogs/blog_detail.html', {'post': post})
+    comments = Comment.objects.filter(post=post)
+    return render(request, 'blogs/blog_detail.html', {'post': post, 'comments': comments})
 
 @login_required
 def create_post(request):

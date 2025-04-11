@@ -18,11 +18,16 @@
     </style>
     <script>
         function likePost(postId) {
-            fetch(`/blogs/like/${postId}/`, { method: 'POST', headers: {'X-CSRFToken': '{{ csrf_token }}'} })
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById(`likes-${postId}`).innerText = `Likes: ${data.likes_count}`;
-                });
+            fetch(`/blogs/like/${postId}/`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': "{{ csrf_token }}"
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById(`likes-${postId}`).innerText = `Likes: ${data.likes_count}`;
+            });
         }
     </script>
 </head>

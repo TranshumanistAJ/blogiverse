@@ -28,7 +28,7 @@
             {% for post in posts %}
                 <div class="post-item">
                     <h2><a href="{% url 'blog_detail' post_id=post.id %}">{{ post.title }}</a></h2>
-                    <img src="{{ post.photo.url }}" alt="{{ post.title }}">
+                    <img src="/static/blog_photos/{{ post.photo }}" alt="{{ post.title }}">
                     <p>{{ post.content|truncatewords:20 }}</p>
                 </div>
             {% endfor %}

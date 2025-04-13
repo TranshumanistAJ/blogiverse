@@ -1,6 +1,5 @@
 from pathlib import Path
 import os
-import sys
 import dj_database_url
 if os.path.isfile('env.py'):
     import env
@@ -9,10 +8,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
 SECRET_KEY = os.environ.get("SECRET_KEY")
-DEBUG = False
-ALLOWED_HOSTS = ['blogiverse.herokuapp.com', 'localhost', '127.0.0.1', '.herokuapp.com']
-
-CSRF_TRUSTED_ORIGINS = ['https://blogiverse.herokuapp.com']
+DEBUG = os.environ.get('DEVELOPMENT', False) == 'True'
+ALLOWED_HOSTS = ['blogiverse-a5563d85b65c.herokuapp.com', '.herokuapp.com'] if not DEBUG else ['localhost', '127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://blogiverse-a5563d85b65c.herokuapp.com']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -20,15 +18,19 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'cloudinary_storage',
     'django.contrib.staticfiles',
+    'cloudinary',
     'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'django_summernote',
     'blogs',
 ]
 
 SITE_ID = 1
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
@@ -69,12 +71,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'blog_platform.wsgi.application'
 
-DATABASES = {
-    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
-}
-
-if 'test' in sys.argv:
-    DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
+DATABASES = {'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))}
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
@@ -95,5 +92,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
+SUMMERNOTE_THEME = 'bs4'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

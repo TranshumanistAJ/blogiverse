@@ -1,5 +1,5 @@
 from django import forms
-from .models import BlogPost, Forum  # Added Forum
+from .models import BlogPost, Forum, Comment  # Added Comment
 
 class BlogPostForm(forms.ModelForm):
     class Meta:
@@ -11,7 +11,6 @@ class BlogPostForm(forms.ModelForm):
             'forum': forms.Select(),
         }
 
-# New form for Forum
 class ForumForm(forms.ModelForm):
     class Meta:
         model = Forum
@@ -20,3 +19,8 @@ class ForumForm(forms.ModelForm):
             'name': forms.TextInput(attrs={'placeholder': 'Enter forum name'}),
             'description': forms.Textarea(attrs={'placeholder': 'Describe the forum'}),
         }
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('body',)

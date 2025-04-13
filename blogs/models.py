@@ -1,31 +1,39 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-class Forum(models.Model):
-    name = models.CharField(max_length=100, unique=True)
-    description = models.TextField(blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
+STATUS = ((0, "Draft"), (1, "Published"))
 
-    def __str__(self):
-        return self.name
-
-class BlogPost(models.Model):
-    title = models.CharField(max_length=200)
+class Post(models.Model):
+    title = models.CharField(max_length=200, unique=True)
+    slug = models.SlugField(max_length=200, unique=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="blog_posts")
+    updated_on = models.DateTimeField(auto_now=True)
     content = models.TextField()
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
-    forum = models.ForeignKey(Forum, on_delete=models.CASCADE, default=1)
-    created_at = models.DateTimeField(auto_now_add=True)
-    photo = models.ImageField(upload_to='blog_photos/', blank=True, null=True)
-    likes = models.ManyToManyField(User, related_name='liked_posts', blank=True)
+    featured_image = models.CharField(max_length=200, default='placeholder')
+    excerpt = models.TextField(blank=True)
+    created_on = models.DateTimeField(auto_now_add=True)
+    status = models.IntegerField(choices=STATUS, default=0)
+    likes = models.ManyToManyField(User, related_name='blog_likes', blank=True)
+
+    class Meta:
+        ordering = ['-created_on']
 
     def __str__(self):
         return self.title
 
+    def number_of_likes(self):
+        return self.likes.count()
+
 class Comment(models.Model):
-    post = models.ForeignKey(BlogPost, on_delete=models.CASCADE, related_name='comments')
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
-    content = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+    name = models.CharField(max_length=80)
+    email = models.EmailField()
+    body = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+    approved = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ['created_on']
 
     def __str__(self):
-        return f"Comment by {self.author} on {self.post}"
+        return f"Comment {self.body} by {self.name}"

@@ -4,55 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Blogiverse{% endblock %}</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background-image: url('/static/images/background.jpg');
-            background-size: cover;
-            min-height: 100vh;
-        }
-        .navbar {
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 10px 20px;
-            border-bottom: 2px solid #333;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .navbar a {
-            color: #333;
-            text-decoration: none;
-            margin: 0 15px;
-        }
-        .navbar a:hover {
-            color: #555;
-        }
-        .content {
-            padding: 20px;
-        }
-    </style>
-    {% block extra_css %}{% endblock %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% load crispy_forms_tags %}
 </head>
 <body>
-    <div class="navbar">
-        <a href="{% url 'home' %}">Blogiverse</a>
-        <div>
+    <div class="container">
+        <div class="nav">
             {% if user.is_authenticated %}
-                <a href="#">Welcome, {{ user.username }}</a>
-                <a href="{% url 'create_post' %}">Create Post</a>
-                {% if user.is_staff %}
-                    <a href="{% url 'create_forum' %}">Create Forum</a>
-                {% endif %}
-                <a href="{% url 'account_logout' %}">Logout</a>
+                <p>Welcome, {{ user.username }}! <a href="{% url 'account_logout' %}">Logout</a></p>
             {% else %}
-                <a href="{% url 'account_login' %}">Login</a>
-                <a href="{% url 'account_signup' %}">Sign Up</a>
+                <p><a href="{% url 'account_login' %}">Login</a> | <a href="{% url 'account_signup' %}">Sign Up</a></p>
             {% endif %}
         </div>
+        {% if messages %}
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    {% for message in messages %}
+                        <div class="alert {{ message.tags }} alert-dismissible" id="msg" role="alert">
+                            {{ message | safe }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+        {% block content %}
+        {% endblock %}
     </div>
-    <div class="content">
-        {% block content %}{% endblock %}
-    </div>
+    <script>
+        setTimeout(function() {
+            let alert = document.getElementById("msg");
+            if (alert) {
+                let bsAlert = new bootstrap.Alert(alert);
+                bsAlert.close();
+            }
+        }, 3000);
+    </script>
 </body>
 </html>

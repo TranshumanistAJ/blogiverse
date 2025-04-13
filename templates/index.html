@@ -1,42 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blogiverse</title>
-    <style>
-        body { 
-            font-family: Arial; 
-            margin: 0; 
-            background: url('/static/images/background.jpg') no-repeat center center fixed; 
-            background-size: cover; 
-        }
-        .container { max-width: 800px; margin: 20px auto; padding: 20px; background: rgba(255, 255, 255, 0.9); border-radius: 8px; }
-        h1 { text-align: center; }
-        .forum-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
-        .forum-item { padding: 10px; background: #e0e0e0; border-radius: 5px; text-align: center; }
-        a { color: #333; text-decoration: none; }
-        a:hover { color: #555; }
-        .nav { text-align: center; margin-bottom: 20px; }
-    </style>
-</head>
-<body>
-    <div class="nav">
-        {% if user.is_authenticated %}
-            <p>Welcome, {{ user.username }}! <a href="{% url 'account_logout' %}">Logout</a></p>
-        {% else %}
-            <p><a href="{% url 'account_login' %}">Login</a> | <a href="{% url 'account_signup' %}">Sign Up</a></p>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Blogiverse{% endblock %}
+{% block content %}
+<h1>Welcome to Blogiverse</h1>
+<div class="row">
+    {% for post in object_list %}
+        {% if forloop.counter0|divisibleby:3 %}
+            </div><div class="row">
         {% endif %}
-    </div>
-    <div class="container">
-        <h1>Welcome to Blogiverse</h1>
-        <div class="forum-list">
-            {% for forum in forums %}
-                <div class="forum-item">
-                    <a href="{% url 'topic_list' forum_name=forum.name %}">{{ forum.name }}</a>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="image-container">
+                    <img src="{% static 'blog_photos/'|add:post.featured_image %}" alt="{{ post.title }}">
+                    <div class="image-flash">
+                        <p class="author">{{ post.author }}</p>
+                    </div>
                 </div>
-            {% endfor %}
+                <a href="{% url 'post_detail' slug=post.slug %}" class="post-link">
+                    <h2 class="post-title">{{ post.title }}</h2>
+                    <p class="post-subtitle">{{ post.excerpt }}</p>
+                </a>
+                <hr>
+                <p><i class="far fa-heart"></i> {{ post.number_of_likes }}</p>
+            </div>
         </div>
-    </div>
-</body>
-</html>
+    {% endfor %}
+</div>
+{% if is_paginated %}
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+                <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">« PREV</a></li>
+            {% endif %}
+            {% if page_obj.has_next %}
+                <li><a href="?page={{ page_obj.next_page_number }}" class="page-link">NEXT »</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+{% endif %}
+{% endblock %}

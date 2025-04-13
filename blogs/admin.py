@@ -1,8 +1,6 @@
 from django.contrib import admin
-from .models import BlogPost
+from .models import BlogPost, Forum, Comment
 
-# Register your models here.
-class BlogAdmin(admin.ModelAdmin):
-    list_display = ("title", "author")
-
-admin.site.register(BlogPost, BlogAdmin)
+admin.site.register(BlogPost)
+admin.site.register(Forum)
+admin.site.register(Comment)

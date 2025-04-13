@@ -49,7 +49,7 @@
                     <p>{{ post.content }}</p>
                     <div class="actions">
                         {% if user.is_authenticated %}
-                            <button onclick="likePost({{ post.id }})">Like</button>
+                            <button onclick="likePost({ post,id },)">Like</button>
                             <span id="likes-{{ post.id }}">Likes: {{ post.likes.count }}</span>
                             <a href="{% url 'blog_detail' post_id=post.id %}">Comment</a>
                         {% endif %}

@@ -4,6 +4,7 @@ dj-database-url==0.5.0
 Django==5.1.7
 django-allauth==65.6.0
 django-cloudinary-storage==0.3.0
+django-crispy-forms==1.14.0
 django-summernote==0.8.20.0
 gunicorn==23.0.0
 oauthlib==3.2.2

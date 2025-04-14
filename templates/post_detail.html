@@ -6,7 +6,7 @@
         <div class="row g-0">
             <div class="col-md-6 masthead-text">
                 <h1 class="post-title">{{ post.title }}</h1>
-                <p class="post-subtitle">{{ post.author }} | {{ post.created_on }}</p>
+                <p class="post-subtitle">{{ post.author }} | {{ post.created_at }}</p>
             </div>
             <div class="d-none d-md-block col-md-6 masthead-image">
                 <img src="{% static 'blog_photos/'|add:post.photo %}" alt="{{ post.title }}" width="100%">
@@ -21,7 +21,19 @@
                 <p class="card-text">{{ post.content | safe }}</p>
                 <div class="row">
                     <div class="col-1">
-                        <strong class="text-secondary"><i class="far fa-heart"></i> {{ post.likes.count }}</strong>
+                        {% if user.is_authenticated %}
+                            <form method="post" action="{% url 'like_post' post.id %}" class="d-inline">
+                                {% csrf_token %}
+                                {% if user in post.likes.all %}
+                                    <button type="submit" class="btn-like"><i class="fas fa-heart"></i></button>
+                                {% else %}
+                                    <button type="submit" class="btn-like"><i class="far fa-heart"></i></button>
+                                {% endif %}
+                            </form>
+                        {% else %}
+                            <i class="far fa-heart"></i>
+                        {% endif %}
+                        <strong class="text-secondary" id="likes-{{ post.id }}"> {{ post.likes.count }}</strong>
                     </div>
                     <div class="col-1">
                         {% with comments.count as total_comments %}
@@ -45,7 +57,7 @@
                 <div class="comments" style="padding: 10px;">
                     <p class="font-weight-bold">
                         {{ comment.author.username }}
-                        <span class="text-muted font-weight-normal">{{ comment.created_on }}</span> wrote:
+                        <span class="text-muted font-weight-normal">{{ comment.created_at }}</span> wrote:
                     </p>
                     {{ comment.content | linebreaks }}
                 </div>
@@ -54,16 +66,12 @@
         </div>
         <div class="col-md-4 card mb-4 mt-3">
             <div class="card-body">
-                {% if commented %}
-                    <p>Your comment is awaiting approval</p>
-                {% else %}
-                    {% if user.is_authenticated %}
-                        <form method="post" class="d-inline">
-                            {% csrf_token %}
-                            {{ comment_form|crispy }}
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </form>
-                    {% endif %}
+                {% if user.is_authenticated %}
+                    <form method="post" class="d-inline">
+                        {% csrf_token %}
+                        {{ comment_form|crispy }}
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
                 {% endif %}
             </div>
         </div>

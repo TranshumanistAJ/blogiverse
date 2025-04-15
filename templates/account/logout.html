@@ -1,60 +1,30 @@
-{% extends 'base.html' %}
+<!-- templates/account/logout.html -->
+<!-- Page for confirming user logout with allauth -->
 
-{% block title %}Sign Out - Blogiverse{% endblock %}
+{% extends 'base.html' %} <!-- Inherits base.html for consistent layout and navigation -->
+
+{% block title %}
+    Sign Out - Blogiverse <!-- Sets browser tab title to "Sign Out - Blogiverse" -->
+{% endblock %}
 
 {% block extra_css %}
-    <style>
-        body {
-            background-image: url('/static/images/loginandsignupbackground.jpg');
-            background-size: cover;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0; /* Reset default margin */
-        }
-        .navbar {
-            position: fixed; /* Keep navbar at the top */
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000; /* Ensure it’s above other content */
-        }
-        .auth-container {
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            width: 300px;
-            margin-top: 60px; /* Add space below navbar */
-        }
-        .auth-container h2 { margin-bottom: 20px; }
-        .auth-container form { display: flex; flex-direction: column; }
-        .auth-container button {
-            padding: 10px;
-            background-color: #d9534f;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 10px 0;
-        }
-        .auth-container button:hover { background-color: #c9302c; }
-        .auth-container a {
-            color: #333;
-            text-decoration: none;
-            margin-top: 10px;
-        }
-    </style>
+    <!-- Links to external CSS file for authentication styling -->
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
 {% endblock %}
 
 {% block content %}
+    <!-- Container for logout confirmation form, styled via auth.css -->
     <div class="auth-container">
+        <!-- Heading for logout page -->
         <h2>Sign Out</h2>
+        <!-- Prompt asking user to confirm logout -->
         <p>Are you sure you want to sign out?</p>
+        <!-- Form for submitting logout request -->
         <form method="post" action="{% url 'account_logout' %}">
-            {% csrf_token %}
+            {% csrf_token %} <!-- Adds CSRF token for secure form submission -->
+            <!-- Submit button to confirm logout -->
             <button type="submit">Sign Out</button>
+            <!-- Link to cancel and return to homepage -->
             <a href="{% url 'home' %}">Cancel</a>
         </form>
     </div>

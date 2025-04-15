@@ -1,41 +1,27 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block title %}Blogiverse{% endblock %}
+<!-- templates/index.html -->
+<!-- Homepage template displaying all forums -->
+
+{% extends 'base.html' %} <!-- Extends base.html for consistent layout -->
+{% load static %} <!-- Loads static template tag for accessing files -->
 {% block content %}
-<h1>Welcome to Blogiverse</h1>
-<div class="row">
-    {% for post in object_list %}
-        {% if forloop.counter0|divisibleby:3 %}
-            </div><div class="row">
-        {% endif %}
-        <div class="col-md-4">
-            <div class="card">
-                <div class="image-container">
-                    <img src="{% static 'blog_photos/'|add:post.featured_image %}" alt="{{ post.title }}">
-                    <div class="image-flash">
-                        <p class="author">{{ post.author }}</p>
-                    </div>
+<div class="container">
+    <!-- Main heading for the homepage -->
+    <h1>Welcome to Blogiverse</h1>
+    <div class="row">
+        <!-- Loops through forums to display each -->
+        {% for forum in forums %}
+            <div class="col-md-4">
+                <div class="card">
+                    <!-- Links to forum’s post list -->
+                    <a href="{% url 'topic_list' forum_name=forum.name %}" class="post-link">
+                        <!-- Displays forum name -->
+                        <h2 class="post-title">{{ forum.name }}</h2>
+                        <!-- Displays forum description -->
+                        <p class="post-subtitle">{{ forum.description }}</p>
+                    </a>
                 </div>
-                <a href="{% url 'post_detail' slug=post.slug %}" class="post-link">
-                    <h2 class="post-title">{{ post.title }}</h2>
-                    <p class="post-subtitle">{{ post.excerpt }}</p>
-                </a>
-                <hr>
-                <p><i class="far fa-heart"></i> {{ post.number_of_likes }}</p>
             </div>
-        </div>
-    {% endfor %}
+        {% endfor %}
+    </div>
 </div>
-{% if is_paginated %}
-    <nav aria-label="Page navigation">
-        <ul class="pagination">
-            {% if page_obj.has_previous %}
-                <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">« PREV</a></li>
-            {% endif %}
-            {% if page_obj.has_next %}
-                <li><a href="?page={{ page_obj.next_page_number }}" class="page-link">NEXT »</a></li>
-            {% endif %}
-        </ul>
-    </nav>
-{% endif %}
 {% endblock %}

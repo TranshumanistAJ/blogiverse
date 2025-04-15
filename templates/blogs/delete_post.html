@@ -1,45 +1,20 @@
-{% extends 'base.html' %}
+<!-- templates/blogs/delete_post.html -->
+<!-- Template for confirming post deletion -->
 
-{% block title %}Delete Post - Blogiverse{% endblock %}
-
-{% block extra_css %}
-    <style>
-        .form-container {
-            max-width: 600px;
-            margin: 20px auto;
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-        }
-        .form-container h1 { margin-bottom: 20px; }
-        .form-container p { margin: 20px 0; }
-        .form-container form { display: inline-block; }
-        .form-container button {
-            padding: 10px 20px;
-            background-color: #d9534f;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .form-container button:hover { background-color: #c9302c; }
-        .form-container a {
-            color: #333;
-            text-decoration: none;
-            margin-left: 20px;
-        }
-    </style>
-{% endblock %}
-
+{% extends 'base.html' %} <!-- Extends base.html for layout -->
 {% block content %}
-    <div class="form-container">
-        <h1>Delete Post: {{ post.title }}</h1>
-        <p>Are you sure you want to delete this post? This action cannot be undone.</p>
-        <form method="post">
-            {% csrf_token %}
-            <button type="submit">Delete</button>
-            <a href="{% url 'blog_detail' post_id=post.id %}">Cancel</a>
-        </form>
-    </div>
+<div class="container">
+    <!-- Heading with post title -->
+    <h2>Delete Post: {{ post.title }}</h2>
+    <!-- Confirmation message -->
+    <p>Are you sure you want to delete this post?</p>
+    <!-- Form for deletion -->
+    <form method="post">
+        {% csrf_token %} <!-- Security token -->
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <!-- Cancel link -->
+        <a href="{% url 'blog_detail' post_id=post.id %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
 {% endblock %}

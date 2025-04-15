@@ -1,13 +1,19 @@
-{% extends 'base.html' %}
-{% load static crispy_forms_tags %}
+<!-- templates/post_detail.html -->
+<!-- Template for displaying a single blog post with comments -->
+
+{% extends 'base.html' %} <!-- Extends base.html for layout -->
+{% load static crispy_forms_tags %} <!-- Loads static and crispy forms tags -->
 {% block content %}
 <div class="masthead">
     <div class="container">
         <div class="row g-0">
+            <!-- Left column for post title and metadata -->
             <div class="col-md-6 masthead-text">
                 <h1 class="post-title">{{ post.title }}</h1>
+                <!-- Shows author and creation date -->
                 <p class="post-subtitle">{{ post.author }} | {{ post.created_at }}</p>
             </div>
+            <!-- Right column for post image -->
             <div class="d-none d-md-block col-md-6 masthead-image">
                 <img src="{% static 'blog_photos/'|add:post.photo %}" alt="{{ post.title }}" width="100%">
             </div>
@@ -16,12 +22,16 @@
 </div>
 <div class="container">
     <div class="row">
+        <!-- Main post content section -->
         <div class="col card mb-4 mt-3 left top">
             <div class="card-body">
+                <!-- Safely renders post content -->
                 <p class="card-text">{{ post.content | safe }}</p>
                 <div class="row">
+                    <!-- Like button and count -->
                     <div class="col-1">
                         {% if user.is_authenticated %}
+                            <!-- Form for liking/unliking -->
                             <form method="post" action="{% url 'like_post' post.id %}" class="d-inline">
                                 {% csrf_token %}
                                 {% if user in post.likes.all %}
@@ -31,13 +41,16 @@
                                 {% endif %}
                             </form>
                         {% else %}
+                            <!-- Static heart for non-authenticated users -->
                             <i class="far fa-heart"></i>
                         {% endif %}
+                        <!-- Displays like count -->
                         <strong class="text-secondary" id="likes-{{ post.id }}"> {{ post.likes.count }}</strong>
                     </div>
+                    <!-- Comment count -->
                     <div class="col-1">
                         {% with comments.count as total_comments %}
-                        <strong class="text-secondary"><i class="far fa-comments"></i> {{ total_comments }}</strong>
+                            <strong class="text-secondary"><i class="far fa-comments"></i> {{ total_comments }}</strong>
                         {% endwith %}
                     </div>
                 </div>
@@ -45,31 +58,38 @@
         </div>
     </div>
     <div class="row">
+        <!-- Horizontal divider -->
         <div class="col">
             <hr>
         </div>
     </div>
     <div class="row">
+        <!-- Comments section -->
         <div class="col-md-8 card mb-4 mt-3">
             <h3>Comments:</h3>
             <div class="card-body">
+                <!-- Loops through comments -->
                 {% for comment in comments %}
-                <div class="comments" style="padding: 10px;">
-                    <p class="font-weight-bold">
-                        {{ comment.author.username }}
-                        <span class="text-muted font-weight-normal">{{ comment.created_at }}</span> wrote:
-                    </p>
-                    {{ comment.content | linebreaks }}
-                </div>
+                    <div class="comments" style="padding: 10px;">
+                        <!-- Displays commenter and timestamp -->
+                        <p class="font-weight-bold">
+                            {{ comment.author.username }}
+                            <span class="text-muted font-weight-normal">{{ comment.created_at }}</span> wrote:
+                        </p>
+                        <!-- Renders comment content -->
+                        {{ comment.content | linebreaks }}
+                    </div>
                 {% endfor %}
             </div>
         </div>
+        <!-- Comment form section -->
         <div class="col-md-4 card mb-4 mt-3">
             <div class="card-body">
                 {% if user.is_authenticated %}
+                    <!-- Form for adding comments -->
                     <form method="post" class="d-inline">
                         {% csrf_token %}
-                        {{ comment_form|crispy }}
+                        {{ comment_form|crispy }} <!-- Renders form with crispy styling -->
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 {% endif %}

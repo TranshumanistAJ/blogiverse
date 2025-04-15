@@ -1,36 +1,52 @@
+<!-- templates/base.html -->
+<!-- Base template extended by other templates, providing consistent layout -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Sets character encoding for proper text display -->
     <meta charset="UTF-8">
+    <!-- Ensures responsive viewport scaling -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Dynamic title block, defaults to "Blogiverse" -->
     <title>{% block title %}Blogiverse{% endblock %}</title>
+    <!-- Links to custom CSS for styling -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Loads crispy forms tags for form rendering -->
     {% load crispy_forms_tags %}
 </head>
 <body>
     <div class="container">
+        <!-- Navigation bar with conditional login/logout links -->
         <div class="nav">
             {% if user.is_authenticated %}
+                <!-- Shows username and logout link for logged-in users -->
                 <p>Welcome, {{ user.username }}! <a href="{% url 'account_logout' %}">Logout</a></p>
             {% else %}
+                <!-- Shows login/signup links for anonymous users -->
                 <p><a href="{% url 'account_login' %}">Login</a> | <a href="{% url 'account_signup' %}">Sign Up</a></p>
             {% endif %}
         </div>
+        <!-- Displays message toasts for user feedback -->
         {% if messages %}
             <div class="row">
                 <div class="col-md-8 offset-md-2">
                     {% for message in messages %}
+                        <!-- Renders each message as a dismissible alert -->
                         <div class="alert {{ message.tags }} alert-dismissible" id="msg" role="alert">
-                            {{ message | safe }}
+                            {{ message | safe }} <!-- Safely renders message content -->
+                            <!-- Close button for dismissing alert -->
                             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                         </div>
                     {% endfor %}
                 </div>
             </div>
         {% endif %}
+        <!-- Content block for child templates to fill -->
         {% block content %}
         {% endblock %}
     </div>
+    <!-- JavaScript to auto-dismiss alerts after 3 seconds -->
     <script>
         setTimeout(function() {
             let alert = document.getElementById("msg");

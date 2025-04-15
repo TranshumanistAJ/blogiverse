@@ -1,43 +1,18 @@
-{% extends 'base.html' %}
+<!-- templates/blogs/create_post.html -->
+<!-- Template for creating a new blog post -->
 
-{% block title %}Create a Post - Blogiverse{% endblock %}
-
-{% block extra_css %}
-    <style>
-        .form-container {
-            max-width: 600px;
-            margin: 20px auto;
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            border-radius: 8px;
-        }
-        .form-container h1 { margin-bottom: 20px; }
-        .form-container form { display: flex; flex-direction: column; }
-        .form-container input, .form-container textarea, .form-container select {
-            margin: 10px 0;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .form-container button {
-            padding: 10px;
-            background-color: #333;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .form-container button:hover { background-color: #555; }
-    </style>
-{% endblock %}
-
+{% extends 'base.html' %} <!-- Extends base.html for layout -->
+{% load crispy_forms_tags %} <!-- Loads crispy forms for styling -->
 {% block content %}
-    <div class="form-container">
-        <h1>Create a New Post</h1>
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Post</button>
-        </form>
-    </div>
+<div class="container">
+    <!-- Heading for post creation -->
+    <h2>Create a New Post</h2>
+    <!-- Form for post creation -->
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %} <!-- Security token -->
+        {{ form|crispy }} <!-- Renders form (title, content, forum, photo) -->
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-primary">Create Post</button>
+    </form>
+</div>
 {% endblock %}

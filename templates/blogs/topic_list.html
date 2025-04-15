@@ -1,27 +1,41 @@
-{% extends 'base.html' %}
-{% load static %}
+<!-- templates/blogs/topic_list.html -->
+<!-- Template for listing posts, optionally filtered by forum -->
+
+{% extends 'base.html' %} <!-- Extends base.html for layout consistency -->
+{% load static %} <!-- Loads static tag for accessing photos -->
 {% block content %}
 <div class="container">
+    <!-- Displays forum name or default title -->
     <h1>{{ forum.name|default:"Blogiverse" }}</h1>
     <div class="post-list">
+        <!-- Loops through posts to display each -->
         {% for post in posts %}
             <div class="post-item">
+                <!-- Links to post detail page -->
                 <h2><a href="{% url 'blog_detail' post_id=post.id %}">{{ post.title }}</a></h2>
+                <!-- Displays post image -->
                 <img src="{% static 'blog_photos/'|add:post.photo %}" alt="{{ post.title }}">
+                <!-- Displays post content -->
                 <p>{{ post.content }}</p>
                 <div class="actions">
                     {% if user.is_authenticated %}
+                        <!-- Form for liking/unliking post -->
                         <form method="post" action="{% url 'like_post' post.id %}" class="d-inline">
-                            {% csrf_token %}
+                            {% csrf_token %} <!-- Security token -->
                             {% if user in post.likes.all %}
+                                <!-- Solid heart for liked posts -->
                                 <button type="submit" class="btn-like"><i class="fas fa-heart"></i></button>
                             {% else %}
+                                <!-- Outline heart for unliked posts -->
                                 <button type="submit" class="btn-like"><i class="far fa-heart"></i></button>
                             {% endif %}
                         </form>
+                        <!-- Displays like count -->
                         <span id="likes-{{ post.id }}">Likes: {{ post.likes.count }}</span>
+                        <!-- Link to comment section -->
                         <a href="{% url 'blog_detail' post_id=post.id %}">Comment</a>
                     {% else %}
+                        <!-- Shows like count for non-authenticated users -->
                         <i class="far fa-heart"></i> <span>Likes: {{ post.likes.count }}</span>
                     {% endif %}
                 </div>

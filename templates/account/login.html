@@ -1,13 +1,20 @@
-{% extends 'base.html' %}
-{% load crispy_forms_tags %}
+<!-- templates/account/login.html -->
+<!-- Template for user login page -->
+
+{% extends 'base.html' %} <!-- Extends base.html for layout -->
+{% load crispy_forms_tags %} <!-- Loads crispy forms for styled form rendering -->
 {% block content %}
 <div class="container">
+    <!-- Login page heading -->
     <h2>Login</h2>
+    <!-- Login form -->
     <form method="post">
-        {% csrf_token %}
-        {{ form|crispy }}
+        {% csrf_token %} <!-- Security token -->
+        {{ form|crispy }} <!-- Renders login form (username, password) -->
+        <!-- Submit button -->
         <button type="submit" class="btn btn-primary">Login</button>
     </form>
+    <!-- Password reset link below form -->
     <p><a href="{% url 'account_reset_password' %}">Did you forget your password?</a></p>
 </div>
 {% endblock %}

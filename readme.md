@@ -154,4 +154,4 @@ Locally, the site runs with DEBUG=True to facilitate development and debugging, 
 ### Acknowledgements
 *I would like to express my deepest gratitude to those who supported me throughout the development of Blogiverse*:
 
-#### Richard Wells, my mentor at Code Institute, whose exceptional guidance, patience, and expertise were pivotal in overcoming technical hurdles. His encouragement was a constant source of motivation, pushing
+#### Richard Wells, my mentor at Code Institute, whose exceptional guidance, patience, and expertise were pivotal in overcoming technical hurdles. His encouragement was a constant source of motivation.

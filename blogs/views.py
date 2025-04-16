@@ -11,7 +11,7 @@ from .forms import BlogPostForm, ForumForm, CommentForm  # Imports forms for cre
 # Displays the homepage with all forums
 def home(request):
     forums = Forum.objects.all()  # Fetches all forums from the database
-    return render(request, '', {'forums': forums})  # Renders index.html with forums context
+    return render(request, 'index.html', {'forums': forums})  # Renders index.html with forums context
 
 # Lists posts, optionally filtered by forum
 def topic_list(request, forum_name=None):

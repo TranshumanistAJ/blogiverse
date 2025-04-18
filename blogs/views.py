@@ -51,7 +51,7 @@ def create_post(request):
             return redirect('blog_detail', post_id=post.id)  # Redirects to new post
     else:  # If GET request
         form = BlogPostForm()  # Initializes empty form
-    return render(request, 'create_post.html', {'form': form})  # Renders create_post.html
+    return render(request, 'blogs/create_post.html', {'form': form})  # Renders create_post.html
 
 # Handles forum creation, restricted to logged-in users
 @login_required
@@ -64,7 +64,7 @@ def create_forum(request):
             return redirect('topic_list', forum_name=forum.name)  # Redirects to new forum
     else:  # If GET request
         form = ForumForm()  # Initializes empty form
-    return render(request, 'create_forum.html', {'form': form})  # Renders create_forum.html
+    return render(request, 'blogs/create_forum.html', {'form': form})  # Renders create_forum.html
 
 # Handles post editing, restricted to post author
 @login_required
@@ -75,10 +75,10 @@ def edit_post(request, post_id):
         if form.is_valid():  # Validates form
             form.save()  # Updates post in database
             messages.success(request, "Post updated successfully!")  # Shows success message
-            return redirect('blog_detail', post_id=post.id)  # Redirects to updated post
+            return redirect('blogs/blog_detail', post_id=post.id)  # Redirects to updated post
     else:  # If GET request
         form = BlogPostForm(instance=post)  # Initializes form with existing post data
-    return render(request, 'edit_post.html', {'form': form, 'post': post})  # Renders edit_post.html
+    return render(request, 'blogs/edit_post.html', {'form': form, 'post': post})  # Renders edit_post.html
 
 # Handles post deletion, restricted to post author
 @login_required
@@ -88,7 +88,7 @@ def delete_post(request, post_id):
         post.delete()  # Deletes post from database
         messages.success(request, "Post deleted successfully!")  # Shows success message
         return redirect('topic_list', forum_name=post.forum.name)  # Redirects to forum
-    return render(request, 'delete_post.html', {'post': post})  # Renders delete_post.html
+    return render(request, 'blogs/delete_post.html', {'post': post})  # Renders delete_post.html
 
 # Handles liking/unliking posts, restricted to logged-in users
 @login_required

@@ -16,7 +16,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
 # Security settings
 SECRET_KEY = os.environ.get("SECRET_KEY")
-DEBUG = os.environ.get('DEVELOPMENT', False) == 'True'
+DEBUG = True
 print('DEBUG: ', DEBUG)
 ALLOWED_HOSTS = ['8000-transhumanis-blogiverse-viuld5f44ox.ws-eu118.gitpod.io', 'https://blogiverse-a5563d85b65c.herokuapp.com'] if not DEBUG else ['localhost', '127.0.0.1']
 CSRF_TRUSTED_ORIGINS = ['https://blogiverse-a5563d85b65c.herokuapp.com']

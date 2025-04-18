@@ -35,7 +35,7 @@ def blog_detail(request, post_id):
             comment.author = request.user  # Assigns current user as author
             comment.save()  # Saves comment to database
             messages.success(request, "Comment added!")  # Shows success message
-            return redirect('blog_detail', post_id=post.id)  # Redirects to same post
+            return redirect('blogs/blog_detail', post_id=post.id)  # Redirects to same post
     return render(request, 'post_detail.html', {'post': post, 'comments': comments, 'comment_form': comment_form})  # Renders post_detail.html
 
 # Handles post creation, restricted to logged-in users
@@ -61,7 +61,7 @@ def create_forum(request):
         if form.is_valid():  # Validates form
             forum = form.save()  # Saves forum to database
             messages.success(request, "Forum created successfully!")  # Shows success message
-            return redirect('topic_list', forum_name=forum.name)  # Redirects to new forum
+            return redirect('blogs/topic_list', forum_name=forum.name)  # Redirects to new forum
     else:  # If GET request
         form = ForumForm()  # Initializes empty form
     return render(request, 'blogs/create_forum.html', {'form': form})  # Renders create_forum.html
@@ -87,7 +87,7 @@ def delete_post(request, post_id):
     if request.method == 'POST':  # If form is submitted
         post.delete()  # Deletes post from database
         messages.success(request, "Post deleted successfully!")  # Shows success message
-        return redirect('topic_list', forum_name=post.forum.name)  # Redirects to forum
+        return redirect('blogs/topic_list', forum_name=post.forum.name)  # Redirects to forum
     return render(request, 'blogs/delete_post.html', {'post': post})  # Renders delete_post.html
 
 # Handles liking/unliking posts, restricted to logged-in users

@@ -111,4 +111,4 @@ def add_comment(request, post_id):
         if content:  # If content is not empty
             Comment.objects.create(post=post, author=request.user, content=content)  # Creates new comment
             messages.success(request, "Comment added!")  # Shows success message
-    return redirect('blog_detail', post_id=post_id)  # Redirects to post
+    return redirect('blogs/blog_detail', post_id=post_id)  # Redirects to post

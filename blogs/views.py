@@ -20,7 +20,7 @@ def topic_list(request, forum_name=None):
         posts = BlogPost.objects.filter(forum=forum)  # Filters posts by forum
     else:  # If no forum specified
         posts = BlogPost.objects.all()  # Fetches all posts
-    return render(request, 'topic_list.html', {'forum': forum if forum_name else None, 'posts': posts})  # Renders topic_list.html
+    return render(request, 'blogs/topic_list.html', {'forum': forum if forum_name else None, 'posts': posts})  # Renders topic_list.html
 
 # Displays a single post with comments and comment form
 def blog_detail(request, post_id):

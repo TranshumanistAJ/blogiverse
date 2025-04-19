@@ -1,11 +1,23 @@
 /* static/css/style.css */
 /* Custom styles for Blogiverse, ensuring responsive and engaging design */
 
-/* Sets default body styling */
+/* Sets default body styling with background image */
 body {
     font-family: 'Lato', Arial, sans-serif; /* Uses Lato for body text */
     margin: 0; /* Removes default margins */
     background-color: #F9FAFC; /* Light gray background */
+    background-image: url("../images/background.jpg"); /* Main background image */
+    background-size: cover; /* Covers entire area */
+    background-position: center; /* Centers image */
+}
+
+/* Styles auth container for login/signup pages with background image */
+.auth-container {
+    background-image: url("../images/loginandsignupbackground.jpg"); /* Login/signup background */
+    background-size: cover; /* Covers entire area */
+    background-position: center; /* Centers image */
+    text-align: center; /* Centers content */
+    margin-top: 50px; /* Adds top spacing */
 }
 
 /* Styles main container for content */

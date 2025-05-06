@@ -1,42 +1,43 @@
-<!-- templates/blogs/topic_list.html -->
-<!-- Template for listing posts, optionally filtered by forum -->
-
-{% extends 'base.html' %} <!-- Extends base.html for layout consistency -->
-{% load static %} <!-- Loads static tag for accessing photos -->
+{% extends 'base.html' %}
+{% load static %}
 {% block content %}
 <div class="container">
-    <!-- Displays forum name or default title -->
-    <h1>{{ forum.name|default:"Blogiverse" }}</h1>
+    <h1 style="font-size: 2.5rem; font-weight: bold; color: #333;">{{ forum.name|default:"Blogiverse" }}</h1>
     <div class="post-list">
-        <!-- Loops through posts to display each -->
         {% for post in posts %}
-            <div class="post-item">
-                <!-- Links to post detail page -->
-                <h2><a href="{% url 'blog_detail' post_id=post.id %}">{{ post.title }}</a></h2>
-                <!-- Displays post image -->
-                <img src="{% static 'blog_photos/'|add:post.photo %}" alt="{{ post.title }}">
-                <!-- Displays post content -->
-                <p>{{ post.content }}</p>
-                <div class="actions">
+            <div class="post-item card mb-4" style="border-radius: 10px; overflow: hidden; background-color: #fff; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                <div style="display: flex; gap: 20px; padding: 20px;">
+                    <!-- Post image on the left -->
+                    <img src="{% static post.photo %}" alt="{{ post.title }}" style="width: 150px; height: 150px; object-fit: cover; border-radius: 10px;">
+
+                    <!-- Post title and content on the right -->
+                    <div style="flex: 1;">
+                        <h2 style="font-size: 1.8rem; font-weight: bold; color: #007bff; margin-top: 0;">
+                            <a href="{% url 'blog_detail' post_id=post.id %}" style="text-decoration: none; color: inherit; transition: color 0.3s;">{{ post.title }}</a>
+                        </h2>
+                        <p style="color: #555; font-size: 1.1rem; line-height: 1.6;">{{ post.content|slice:":200" }}...</p>
+                    </div>
+                </div>
+
+                <!-- Actions (like button, like count, and comment link) -->
+                <div class="actions" style="padding: 15px; background-color: #f8f9fa; border-top: 1px solid #ddd; display: flex; justify-content: space-between; align-items: center;">
                     {% if user.is_authenticated %}
-                        <!-- Form for liking/unliking post -->
                         <form method="post" action="{% url 'like_post' post.id %}" class="d-inline">
-                            {% csrf_token %} <!-- Security token -->
+                            {% csrf_token %}
                             {% if user in post.likes.all %}
-                                <!-- Solid heart for liked posts -->
-                                <button type="submit" class="btn-like"><i class="fas fa-heart"></i></button>
+                                <button type="submit" class="btn btn-danger btn-sm" style="border-radius: 20px;">
+                                    <i class="fas fa-heart"></i> Like
+                                </button>
                             {% else %}
-                                <!-- Outline heart for unliked posts -->
-                                <button type="submit" class="btn-like"><i class="far fa-heart"></i></button>
+                                <button type="submit" class="btn btn-outline-danger btn-sm" style="border-radius: 20px;">
+                                    <i class="far fa-heart"></i> Like
+                                </button>
                             {% endif %}
                         </form>
-                        <!-- Displays like count -->
-                        <span id="likes-{{ post.id }}">Likes: {{ post.likes.count }}</span>
-                        <!-- Link to comment section -->
-                        <a href="{% url 'blog_detail' post_id=post.id %}">Comment</a>
+                        <span id="likes-{{ post.id }}" style="font-size: 1rem; color: #555;">{{ post.likes.count }} Likes</span>
+                        <a href="{% url 'blog_detail' post_id=post.id %}" class="btn btn-outline-primary btn-sm" style="border-radius: 20px;">Comment</a>
                     {% else %}
-                        <!-- Shows like count for non-authenticated users -->
-                        <i class="far fa-heart"></i> <span>Likes: {{ post.likes.count }}</span>
+                        <i class="far fa-heart" style="color: #888;"></i> <span>{{ post.likes.count }} Likes</span>
                     {% endif %}
                 </div>
             </div>

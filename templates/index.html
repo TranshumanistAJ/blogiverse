@@ -1,24 +1,26 @@
 <!-- templates/index.html -->
-<!-- Homepage template displaying all forums -->
+{% extends 'base.html' %}
+{% load static %}
 
-{% extends 'base.html' %} <!-- Extends base.html for consistent layout -->
-{% load static %} <!-- Loads static template tag for accessing files -->
 {% block content %}
-<div class="container">
-    <!-- Main heading for the homepage -->
-    <h1>Welcome to Blogiverse</h1>
-    <div class="row">
-        <!-- Loops through forums to display each -->
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+        <h1 class="display-4 text-primary">Welcome to Blogiverse</h1>
+        <a href="/create" class="btn btn-success btn-lg shadow-sm">
+            ➕ Create a Post
+        </a>
+    </div>
+
+    <div class="row g-4">
         {% for forum in forums %}
-            <div class="col-md-4">
-                <div class="card">
-                    <!-- Links to forum’s post list -->
-                    <a href="{% url 'topic_list' forum_name=forum.name %}" class="post-link">
-                        <!-- Displays forum name -->
-                        <h2 class="post-title">{{ forum.name }}</h2>
-                        <!-- Displays forum description -->
-                        <p class="post-subtitle">{{ forum.description }}</p>
-                    </a>
+            <div class="col-sm-12 col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body">
+                        <a href="{% url 'topic_list' forum_name=forum.name %}" class="text-decoration-none text-dark">
+                            <h5 class="card-title">{{ forum.name }}</h5>
+                            <p class="card-text text-muted">{{ forum.description }}</p>
+                        </a>
+                    </div>
                 </div>
             </div>
         {% endfor %}

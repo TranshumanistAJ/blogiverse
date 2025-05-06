@@ -6,7 +6,7 @@ try:
 except User.DoesNotExist:
     print('user doest not exist')
     
-user = User.objects.create_superuser("Transhumanist", "ajdeutschland103@hotmail.com", "Dansat103")
+user = User.objects.create_superuser("aj1994", "ajdeutschland103@hotmail.com", "1234")
 forums = {"Personal Growth": "Personal Growth stories", "Love & Relationships": "Tales of romance", "Self Discovery": "Journeys of self", "Mystical & Unexplained": "Mysteries beyond", "A Trip to the Unknown": "Group adventures", "Faith & Spirituality": "Spiritual paths", "Unconventional Trips": "Offbeat travels"}
 for name, desc in forums.items():
     Forum.objects.get_or_create(name=name, defaults={"description": desc})

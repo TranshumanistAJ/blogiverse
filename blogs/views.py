@@ -21,6 +21,7 @@ def topic_list(request, forum_name=None):
         posts = BlogPost.objects.filter(forum=forum)  # Filters posts by forum
     else:  # If no forum specified
         posts = BlogPost.objects.all()  # Fetches all posts
+    
     return render(request, 'blogs/topic_list.html', {'forum': forum if forum_name else None, 'posts': posts})  # Renders topic_list.html
 
 # Displays a single post with comments and comment form
@@ -62,8 +63,8 @@ def create_forum(request):
         if form.is_valid():  # Validates form
             forum = form.save()  # Saves forum to database
             messages.success(request, "Forum created successfully!")  # Shows success message
-            return redirect('blogs/topic_list', forum_name=forum.name)  # Redirects to new forum
-    else:  # If GET request
+            return redirect('topic_list', forum_name=forum.name)  # Redirects to new forum
+    else:  # If GET requesta
         form = ForumForm()  # Initializes empty form
     return render(request, 'blogs/create_forum.html', {'form': form})  # Renders create_forum.html
 

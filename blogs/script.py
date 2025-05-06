@@ -1,10 +1,24 @@
+#from blogs.models import Forum, BlogPost
+from django.utils import timezone
+
+import os
+import sys
+import django
+
+# Add the project root to the Python path
+sys.path.append('/workspace/blogiverse')
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'blog_platform.settings')
+django.setup()
+
 from django.contrib.auth.models import User
 from blogs.models import Forum, BlogPost
-from django.utils import timezone
+
+
 try:
-    user = User.objects.get(username="Transhumanist")
+    user = User.objects.get(username="aj1994")
 except User.DoesNotExist:
-    user = User.objects.create_superuser("Transhumanist", "ajdeutschland103@hotmail.com", "Dansat103")
+    user = User.objects.create_superuser("aj1994", "ajdeutschland103@hotmail.com", "aj1994")
 forums = {"Personal Growth": "Personal Growth stories", "Love & Relationships": "Tales of romance", "Self Discovery": "Journeys of self", "Mystical & Unexplained": "Mysteries beyond", "A Trip to the Unknown": "Group adventures", "Faith & Spirituality": "Spiritual paths", "Unconventional Trips": "Offbeat travels"}
 for name, desc in forums.items():
     Forum.objects.get_or_create(name=name, defaults={"description": desc})

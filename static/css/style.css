@@ -13,7 +13,6 @@ body {
 
 /* Styles auth container for login/signup pages with background image */
 .auth-container {
-    background-image: url("../images/loginandsignupbackground.jpg"); /* Login/signup background */
     background-size: cover; /* Covers entire area */
     background-position: center; /* Centers image */
     text-align: center; /* Centers content */
@@ -64,6 +63,7 @@ h1 {
     display: flex; /* Uses flexbox for layout */
     flex-direction: column; /* Stacks posts vertically */
     gap: 10px; /* Adds spacing between posts */
+    color: brown;
 }
 
 /* Styles individual post items */
@@ -162,12 +162,12 @@ button:hover, .btn:hover {
 /* Styles post links */
 .post-link {
     text-decoration: none; /* Removes underline */
-    color: #4A4A4F; /* Dark gray text */
+    color: #eb2f00; /* Dark gray text */
 }
 
 /* Hover effect for post links */
 .post-link:hover {
-    color: #E84610; /* Orange-red on hover */
+    color: #089778; /* Orange-red on hover */
 }
 
 /* Styles post titles */

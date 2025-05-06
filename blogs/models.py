@@ -3,6 +3,7 @@
 
 from django.db import models  # Imports Django's model framework for database interaction
 from django.contrib.auth.models import User  # Imports User model for authentication
+from django.utils import timezone
 
 # Defines the Forum model for categorizing posts
 class Forum(models.Model):
@@ -16,10 +17,10 @@ class Forum(models.Model):
 class BlogPost(models.Model):
     title = models.CharField(max_length=200, unique=True)  # Unique title for the post
     content = models.TextField()  # Main body of the post
-    photo = models.CharField(max_length=200)  # File path for post’s image (e.g., "immanuel.jpg")
+    photo = models.CharField(max_length=200,default='not_found')  # File path for post’s image (e.g., "immanuel.jpg")
     author = models.ForeignKey(User, on_delete=models.CASCADE)  # Links post to user, deletes post if user is deleted
     forum = models.ForeignKey(Forum, on_delete=models.CASCADE)  # Links post to forum, deletes post if forum is deleted
-    created_at = models.DateTimeField(auto_now_add=True)  # Auto-sets creation timestamp
+    created_at = models.DateTimeField(default=timezone.now)  # Auto-sets creation timestamp
     likes = models.ManyToManyField(User, related_name='blog_likes', blank=True)  # Tracks users who liked the post
 
     def __str__(self):

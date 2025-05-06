@@ -24,7 +24,7 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1'
 ]
-CSRF_TRUSTED_ORIGINS = ['https://blogiverse-a5563d85b65c.herokuapp.com']
+CSRF_TRUSTED_ORIGINS = ['https://blogiverse-a5563d85b65c.herokuapp.com','https://8000-transhumanis-blogiverse-viuld5f44ox.ws-eu118.gitpod.io']
 
 # Installed apps for Django functionality
 INSTALLED_APPS = [

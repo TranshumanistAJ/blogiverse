@@ -17,7 +17,7 @@ class Forum(models.Model):
 class BlogPost(models.Model):
     title = models.CharField(max_length=200, unique=True)  # Unique title for the post
     content = models.TextField()  # Main body of the post
-    photo = models.CharField(max_length=200,default='not_found')  # File path for post’s image (e.g., "immanuel.jpg")
+    photo = models.ImageField(upload_to='blog_photos/', blank=True, null=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)  # Links post to user, deletes post if user is deleted
     forum = models.ForeignKey(Forum, on_delete=models.CASCADE)  # Links post to forum, deletes post if forum is deleted
     created_at = models.DateTimeField(default=timezone.now)  # Auto-sets creation timestamp

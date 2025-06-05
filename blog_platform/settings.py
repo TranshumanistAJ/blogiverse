@@ -19,12 +19,13 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 DEBUG = True
 ALLOWED_HOSTS = [
     '8000-transhumanis-blogiverse-viuld5f44ox.ws-eu118.gitpod.io',
+    '8000-transhumanis-blogiverse-cqz8j9uqlx2.ws-eu120.gitpod.io',
     'blogiverse-a5563d85b65c.herokuapp.com',
     'blogiverse-a5563d05b65c.herokuapp.com',
     'localhost',
     '127.0.0.1'
 ]
-CSRF_TRUSTED_ORIGINS = ['https://blogiverse-a5563d85b65c.herokuapp.com','https://8000-transhumanis-blogiverse-viuld5f44ox.ws-eu118.gitpod.io']
+CSRF_TRUSTED_ORIGINS = ['https://blogiverse-a5563d85b65c.herokuapp.com','https://8000-transhumanis-blogiverse-viuld5f44ox.ws-eu118.gitpod.io','https://8000-transhumanis-blogiverse-cqz8j9uqlx2.ws-eu120.gitpod.io']
 
 # Installed apps for Django functionality
 INSTALLED_APPS = [

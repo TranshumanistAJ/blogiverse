@@ -22,21 +22,25 @@
             <div class="card-body" style="background-color: #f8f9fa; border-radius: 10px;">
                 <p class="card-text" style="font-size: 1.2rem; line-height: 1.6;">{{ post.content | safe }}</p>
                 <div class="row" style="font-size: 1.1rem; margin-top: 20px;">
-                    <div class="col-1">
-                        {% if user.is_authenticated %}
-                            <form method="post" action="{% url 'like_post' post.id %}" class="d-inline">
-                                {% csrf_token %}
-                                {% if user in post.likes.all %}
-                                    <button type="submit" class="btn btn-danger btn-sm" style="border-radius: 20px;"><i class="fas fa-heart"></i></button>
-                                {% else %}
-                                    <button type="submit" class="btn btn-outline-danger btn-sm" style="border-radius: 20px;"><i class="far fa-heart"></i></button>
-                                {% endif %}
-                            </form>
-                        {% else %}
-                            <i class="far fa-heart" style="color: #888;"></i>
-                        {% endif %}
-                        <strong class="text-secondary" id="likes-{{ post.id }}"> {{ post.likes.count }}</strong>
-                    </div>
+                    <div class="col-1 d-flex align-items-center" style="gap: 5px;">
+                    {% if user.is_authenticated %}
+                        <form method="post" action="{% url 'like_post' post.id %}" class="d-inline m-0 p-0">
+                            {% csrf_token %}
+                            {% if user in post.likes.all %}
+                                <button type="submit" class="btn btn-like" aria-label="Unlike post">
+                                    <i class="fas fa-heart"></i>
+                                </button>
+                            {% else %}
+                                <button type="submit" class="btn btn-like" aria-label="Like post">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            {% endif %}
+                        </form>
+                    {% else %}
+                        <i class="far fa-heart" style="color: #888;"></i>
+                    {% endif %}
+                    <strong class="text-secondary" id="likes-{{ post.id }}">{{ post.likes.count }}</strong>
+                </div>
                     <div class="col-1">
                         {% with comments.count as total_comments %}
                             <strong class="text-secondary"><i class="far fa-comments"></i> {{ total_comments }}</strong>

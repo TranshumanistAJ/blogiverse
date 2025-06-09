@@ -11,6 +11,31 @@ body {
     background-position: center; /* Centers image */
 }
 
+.btn-like {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #E84610;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+}
+
+.btn-like i {
+    pointer-events: none; /* prevent icon from interfering with click */
+}
+
+/* Optional: hover effect */
+.btn-like:hover {
+    color: #c43707;
+}
+
+
+
 /* Styles auth container for login/signup pages with background image */
 .auth-container {
     background-size: cover; /* Covers entire area */

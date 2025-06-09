@@ -72,7 +72,7 @@
         <div class="col-md-4 card mb-4 mt-3">
             <div class="card-body" style="background-color: #f8f9fa; border-radius: 10px;">
                 {% if user.is_authenticated %}
-                    <form method="post" class="d-inline">
+                    <form method="post" class="d-inline" action="{% url 'add_comment' post.id %}">
                         {% csrf_token %}
                         {{ comment_form|crispy }}
                         <button type="submit" class="btn btn-primary" style="width: 100%; border-radius: 20px; padding: 10px 0;">Submit</button>

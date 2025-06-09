@@ -16,7 +16,8 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
 # Security settings
 SECRET_KEY = os.environ.get("SECRET_KEY")
-DEBUG = True
+DEBUG = os.environ.get("DEVELOPMENT", "False").lower() in ["true", "1", "yes"]
+
 ALLOWED_HOSTS = [
     '.gitpod.io',
     'blogiverse-a5563d85b65c.herokuapp.com',

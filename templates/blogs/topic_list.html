@@ -8,7 +8,7 @@
             <div class="post-item card mb-4" style="border-radius: 10px; overflow: hidden; background-color: #fff; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
                 <div style="display: flex; gap: 20px; padding: 20px;">
                     <!-- Post image on the left -->
-                    <img src="{% static post.photo %}" alt="{{ post.title }}" style="width: 150px; height: 150px; object-fit: cover; border-radius: 10px;">
+                    <img src="{{ post.photo.url }}" alt="{{ post.title }}" style="width: 150px; height: 150px; object-fit: cover; border-radius: 10px;">
 
                     <!-- Post title and content on the right -->
                     <div style="flex: 1;">

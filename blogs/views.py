@@ -102,7 +102,7 @@ def like_post(request, post_id):
     else:  # If user hasn’t liked
         post.likes.add(request.user)  # Adds like
         messages.success(request, "Post liked!")  # Shows success message
-    return JsonResponse({'likes_count': post.likes.count()})  # Returns updated like count for AJAX
+    return redirect('blog_detail', post_id=post.id)  # or post_id=post_id
 
 # Handles adding comments, restricted to logged-in users
 @login_required

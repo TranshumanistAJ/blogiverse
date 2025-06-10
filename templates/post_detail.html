@@ -9,8 +9,11 @@
                 <p class="post-subtitle" style="color: #555; font-size: 1.1rem;">{{ post.author }} | {{ post.created_at }}</p>
             </div>
             <div class="d-none d-md-block col-md-6 masthead-image">
-                <img src="{{ post.photo.url }}" alt="{{ post.title }}" class="img-fluid" style="max-height: 400px; width: 100%; object-fit: cover; border-radius: 10px;">
-         
+                {% if post.photo %}
+                    <img src="{{ post.photo.url }}" alt="{{ post.title }}" class="img-fluid" style="max-height: 400px; width: 100%; object-fit: cover; border-radius: 10px;">
+                {% else %}
+                    <img src="{% static 'images/noimg.svg' %}" alt="{{ post.title }}" class="img-fluid" style="max-height: 400px; width: 100%; object-fit: cover; border-radius: 10px;">
+                {% endif %}
             </div>
         </div>
     </div>

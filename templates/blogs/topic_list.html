@@ -8,8 +8,11 @@
             <div class="post-item card mb-4" style="border-radius: 10px; overflow: hidden; background-color: #fff; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
                 <div style="display: flex; gap: 20px; padding: 20px;">
                     <!-- Post image on the left -->
-                    <img src="{{ post.photo.url }}" alt="{{ post.title }}" style="width: 150px; height: 150px; object-fit: cover; border-radius: 10px;">
-
+                    {% if post.photo %}
+                        <img src="{{ post.photo.url }}" alt="{{ post.title }}" style="width: 150px; height: 150px; object-fit: cover; border-radius: 10px;">
+                    {% else %}
+                        <img src="{% static 'images/noimg.svg' %}" alt="{{ post.title }}" style="width: 150px; height: 150px; object-fit: cover; border-radius: 10px;">
+                    {% endif %}
                     <!-- Post title and content on the right -->
                     <div style="flex: 1;">
                         <h2 style="font-size: 1.8rem; font-weight: bold; color: #007bff; margin-top: 0;">

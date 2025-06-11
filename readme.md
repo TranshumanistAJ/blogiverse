@@ -655,4 +655,4 @@ My mentor at Code Institute, whose exceptional guidance, patience, and technical
 
 ---
 
-**© 2024 Blogiverse - Connecting Stories, Building Community**
+**© 2025 Blogiverse - Connecting Stories, Building Community**

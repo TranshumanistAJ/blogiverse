@@ -97,7 +97,9 @@ TEMPLATES = [
 WSGI_APPLICATION = 'blog_platform.wsgi.application'
 
 # Database configuration from environment
-DATABASES = {'default': dj_database_url.parse('postgresql://neondb_owner:npg_pqrFQ5XMCDd1@ep-broad-snow-a2w2uaun.eu-central-1.aws.neon.tech/elm_cargo_lash_212563')}
+DATABASES = {
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL2'))
+}
 
 # Password validation rules
 AUTH_PASSWORD_VALIDATORS = [

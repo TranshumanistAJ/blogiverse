@@ -1,6 +1,6 @@
 # Testing
 
-[!NOTE]Return to README.md. Project developed in Gitpod.
+[Return to README.md](README.md)
 
 ### Code Validation
 HTML

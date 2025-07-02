@@ -98,7 +98,7 @@ WSGI_APPLICATION = 'blog_platform.wsgi.application'
 
 # Database configuration from environment
 DATABASES = {
-    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL2'))
 }
 
 # Password validation rules

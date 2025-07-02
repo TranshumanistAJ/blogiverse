@@ -34,9 +34,9 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',  # Content types framework
     'django.contrib.sessions',  # Session management
     'django.contrib.messages',  # Messages framework
+    'django.contrib.staticfiles',  # Static file handling
     'cloudinary',  # Cloudinary integration
     'cloudinary_storage',  # Cloudinary media storage
-    'django.contrib.staticfiles',  # Static file handling
     'django.contrib.sites',  # Sites framework for allauth
     'allauth',  # Allauth authentication
     'allauth.account',  # Allauth account features

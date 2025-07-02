@@ -34,9 +34,9 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',  # Content types framework
     'django.contrib.sessions',  # Session management
     'django.contrib.messages',  # Messages framework
+    'cloudinary',  # Cloudinary integration
     'cloudinary_storage',  # Cloudinary media storage
     'django.contrib.staticfiles',  # Static file handling
-    'cloudinary',  # Cloudinary integration
     'django.contrib.sites',  # Sites framework for allauth
     'allauth',  # Allauth authentication
     'allauth.account',  # Allauth account features
@@ -134,14 +134,16 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Media file settings
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Cloudinary configuration
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME', 'blogiverse'),  # Your cloud name
-    'API_KEY': os.environ.get('CLOUDINARY_API_KEY', '247894279316566'),  # Your API key
-    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET', 'iRiz-uxfJn4o_W2JvpWXFJjVXIw'),  # Your API secret
+    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),  # Your cloud name
+    'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),  # Your API key
+    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),  # Your API secret
 }
+
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Summernote and crispy forms settings
 SUMMERNOTE_THEME = 'bs4'

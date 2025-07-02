@@ -5,7 +5,7 @@ from django.db import models  # Imports Django's model framework for database in
 from django.contrib.auth.models import User  # Imports User model for authentication
 from django.utils import timezone
 import uuid, os
-
+from cloudinary.models import CloudinaryField
 
 def unique_blog_photo_path(instance, filename):
     ext = filename.split('.')[-1]
@@ -24,7 +24,10 @@ class Forum(models.Model):
 class BlogPost(models.Model):
     title = models.CharField(max_length=200, unique=True)  # Unique title for the post
     content = models.TextField()  # Main body of the post
-    photo = models.ImageField(upload_to=unique_blog_photo_path, blank=True, null=True) # to upload image with unique address
+    #photo = models.ImageField(upload_to=unique_blog_photo_path, blank=True, null=True) # to upload image with unique address
+        
+    photo = CloudinaryField('image', blank=True, null=True)
+    
     author = models.ForeignKey(User, on_delete=models.CASCADE)  # Links post to user, deletes post if user is deleted
     forum = models.ForeignKey(Forum, on_delete=models.CASCADE)  # Links post to forum, deletes post if forum is deleted
     created_at = models.DateTimeField(default=timezone.now)  # Auto-sets creation timestamp

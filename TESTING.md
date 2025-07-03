@@ -67,13 +67,13 @@ I've tested my deployed project to check for responsiveness issues.
 
 I've tested my deployed project on multiple browsers to check for compatibility issues.
 
-| Page            | Chrome                                                                 | Firefox                                                                 | Edge                                                                   | Notes                        |
-|-----------------|------------------------------------------------------------------------|--------------------------------------------------------------------------|------------------------------------------------------------------------|------------------------------|
-| Home            | ![Chrome](documentation/validation/chrome_home.png)                    | ![Firefox](documentation/validation/firefox_home.png)                   | ![Edge](documentation/validation/edge_home.png)                        | Displays perfectly on all browsers |
-| Forum Pages     | ![Chrome](documentation/validation/chrome_forum.png)                   | ![Firefox](documentation/validation/firefox_forum.png)                  | ![Edge](documentation/validation/edge_forum.png)                       | Consistent rendering across browsers |
-| Post Creation   | ![Chrome](documentation/validation/chrome_create.png)                  | ![Firefox](documentation/validation/firefox_create.png)                 | ![Edge](documentation/validation/edge_create.png)                      | Functionality is smooth everywhere |
-| Authentication  | ![Chrome](documentation/validation/chrome_auth.png)                    | ![Firefox](documentation/validation/firefox_auth.png)                   | ![Edge](documentation/validation/edge_auth.png)                        | Login experience is seamless |
-| Post Detail     | ![Chrome](documentation/validation/chrome_detail.png)                  | ![Firefox](documentation/validation/firefox_detail.png)                 | ![Edge](documentation/validation/edge_detail.png)                      | Display and layout are consistent |
+| Page           | Chrome Screenshot                                                   | Firefox Screenshot                                                    | Edge Screenshot                                                       | Notes                                      |
+|----------------|----------------------------------------------------------------------|------------------------------------------------------------------------|------------------------------------------------------------------------|---------------------------------------------|
+| Home           | ![Chrome Home](documentation/validation/chrome_browser.PNG)         | ![Firefox Home](documentation/validation/firefox_broswer.PNG)         | ![Edge Home](documentation/validation/edge_browser.PNG)               | Displays correctly on all major browsers     |
+| Forum Pages    | ![Chrome Forum](documentation/validation/chrome_forumdetails.PNG)   | ![Firefox Forum](documentation/validation/firefox_forumdetails.PNG)   | ![Edge Forum](documentation/validation/edge_forumdetails.PNG)         | Layout is clean and consistent across browsers |
+| Post Creation  | ![Chrome Create](documentation/validation/chrome_createpost.PNG)    | ![Firefox Create](documentation/validation/firefox_createpost.PNG)    | ![Edge Create](documentation/validation/edge_createpost.PNG)          | Form functions properly and looks good        |
+| Authentication | ![Chrome Login](documentation/validation/chrome_login.PNG)          | ![Firefox Login](documentation/validation/firefox_login.PNG)          | ![Edge Login](documentation/validation/edge_login.PNG)                | Seamless login experience across platforms    |
+
 
 
 ## User Story Testing

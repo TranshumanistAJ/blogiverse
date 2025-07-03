@@ -629,6 +629,11 @@ Comprehensive testing was conducted to ensure Blogiverse meets all functional an
 ### **Richard Wells**
 My mentor at Code Institute, whose exceptional guidance, patience, and technical expertise were instrumental in overcoming complex development challenges. His insights into Django best practices, database design, and deployment strategies helped shape the project's architecture and success.
 
+### **Tim Wilson**
+
+ A special thank you also goes to **Tim Wilson**, my former mentor, whose early mentorship laid the foundation for my growth as a developer.
+Their expertise and dedication have made a lasting impact on my learning journey.
+
 ### **Code Institute Community:**
 * **Slack Community** - Invaluable peer support, code reviews, and collaborative problem-solving throughout development
 * **Student Support Team** - Always available for technical guidance, deadline extensions, and career advice

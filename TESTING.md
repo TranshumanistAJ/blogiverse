@@ -173,34 +173,17 @@ No significant issues encountered during unit testing. All tests pass successful
 
 ## Bugs
 
-### Fixed Bugs
 
-[![GitHub issue custom search](https://img.shields.io/github/issues-search?query=repo%3ATranshumanistAJ%2Fblogiverse%20label%3Abug&label=bugs)](https://github.com/TranshumanistAJ/blogiverse/issues?q=is%3Aissue+is%3Aclosed+label%3Abug)
 
-All previously closed/fixed bugs can be tracked [here](https://github.com/TranshumanistAJ/blogiverse/issues?q=is%3Aissue+is%3Aclosed+label%3Abug).
 
-| Issue | Description | Solution | Screenshot |
-| --- | --- | --- | --- |
-| Static Files Not Loading in Production | CSS and images not loading when DEVELOPMENT=False | Configured static file serving in URLs and simplified storage settings | ![screenshot](docs/bugs/static-files-fix.png) |
-| CSRF Token Missing | Forms failing validation due to missing CSRF tokens | Added {% csrf_token %} to all forms in templates | ![screenshot](docs/bugs/csrf-fix.png) |
-| Image Upload Conflicts | Duplicate filenames causing file conflicts | Implemented UUID-based unique naming system | ![screenshot](docs/bugs/uuid-fix.png) |
-| Like Button Not Updating | Like status not reflecting correctly after click | Fixed user authentication check in like view | ![screenshot](docs/bugs/like-fix.png) |
-| Empty Comments Accepted | System accepting empty comment submissions | Added content validation to comment form | ![screenshot](docs/bugs/comment-validation-fix.png) |
-| Responsive Image Issues | Images not scaling properly on mobile devices | Added responsive CSS classes and max-width properties | ![screenshot](docs/bugs/responsive-images-fix.png) |
 
 ### Unfixed Bugs
 
-[![GitHub issues](https://img.shields.io/github/issues/TranshumanistAJ/blogiverse)](https://github.com/TranshumanistAJ/blogiverse/issues)
 
-Any remaining open issues can be tracked [here](https://github.com/TranshumanistAJ/blogiverse/issues).
 
 Currently, there are no known unfixed bugs.
 
 ### Known Issues
-
-| Issue | Screenshot |
-| --- | --- |
-| None currently identified | N/A |
 
 > [!IMPORTANT]
 > There are no remaining bugs that I am aware of. However, even after thorough testing, I cannot rule out the possibility of undiscovered issues.

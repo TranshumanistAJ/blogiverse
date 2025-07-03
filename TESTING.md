@@ -67,55 +67,14 @@ I've tested my deployed project to check for responsiveness issues.
 
 I've tested my deployed project on multiple browsers to check for compatibility issues.
 
-| Page | Chrome | Firefox | Safari | Edge | Notes |
-| --- | --- | --- | --- | --- | --- |
-| Home | ![screenshot](docs/browsers/chrome-home.png) | ![screenshot](docs/browsers/firefox-home.png) | ![screenshot](docs/browsers/safari-home.png) | ![screenshot](docs/browsers/edge-home.png) | Works as expected |
-| Forum Pages | ![screenshot](docs/browsers/chrome-forum.png) | ![screenshot](docs/browsers/firefox-forum.png) | ![screenshot](docs/browsers/safari-forum.png) | ![screenshot](docs/browsers/edge-forum.png) | Works as expected |
-| Post Creation | ![screenshot](docs/browsers/chrome-create.png) | ![screenshot](docs/browsers/firefox-create.png) | ![screenshot](docs/browsers/safari-create.png) | ![screenshot](docs/browsers/edge-create.png) | Works as expected |
-| Authentication | ![screenshot](docs/browsers/chrome-auth.png) | ![screenshot](docs/browsers/firefox-auth.png) | ![screenshot](docs/browsers/safari-auth.png) | ![screenshot](docs/browsers/edge-auth.png) | Works as expected |
-| Post Detail | ![screenshot](docs/browsers/chrome-detail.png) | ![screenshot](docs/browsers/firefox-detail.png) | ![screenshot](docs/browsers/safari-detail.png) | ![screenshot](docs/browsers/edge-detail.png) | Works as expected |
+| Page            | Chrome                                                                 | Firefox                                                                 | Edge                                                                   | Notes                        |
+|-----------------|------------------------------------------------------------------------|--------------------------------------------------------------------------|------------------------------------------------------------------------|------------------------------|
+| Home            | ![Chrome](documentation/validation/chrome_home.png)                    | ![Firefox](documentation/validation/firefox_home.png)                   | ![Edge](documentation/validation/edge_home.png)                        | Displays perfectly on all browsers |
+| Forum Pages     | ![Chrome](documentation/validation/chrome_forum.png)                   | ![Firefox](documentation/validation/firefox_forum.png)                  | ![Edge](documentation/validation/edge_forum.png)                       | Consistent rendering across browsers |
+| Post Creation   | ![Chrome](documentation/validation/chrome_create.png)                  | ![Firefox](documentation/validation/firefox_create.png)                 | ![Edge](documentation/validation/edge_create.png)                      | Functionality is smooth everywhere |
+| Authentication  | ![Chrome](documentation/validation/chrome_auth.png)                    | ![Firefox](documentation/validation/firefox_auth.png)                   | ![Edge](documentation/validation/edge_auth.png)                        | Login experience is seamless |
+| Post Detail     | ![Chrome](documentation/validation/chrome_detail.png)                  | ![Firefox](documentation/validation/firefox_detail.png)                 | ![Edge](documentation/validation/edge_detail.png)                      | Display and layout are consistent |
 
-## Lighthouse Audit
-
-I've tested my deployed project using the Lighthouse Audit tool to check for any major issues.
-
-| Page | Mobile | Desktop | Notes |
-| --- | --- | --- | --- |
-| Home | ![screenshot](docs/lighthouse/mobile-home.png) | ![screenshot](docs/lighthouse/desktop-home.png) | Good performance scores |
-| Forum List | ![screenshot](docs/lighthouse/mobile-forum.png) | ![screenshot](docs/lighthouse/desktop-forum.png) | Some performance issues on mobile due to images |
-| Post Detail | ![screenshot](docs/lighthouse/mobile-post.png) | ![screenshot](docs/lighthouse/desktop-post.png) | Image optimization could be improved |
-| Create Post | ![screenshot](docs/lighthouse/mobile-create.png) | ![screenshot](docs/lighthouse/desktop-create.png) | Good accessibility scores |
-| Login | ![screenshot](docs/lighthouse/mobile-login.png) | ![screenshot](docs/lighthouse/desktop-login.png) | Excellent scores across all metrics |
-| Signup | ![screenshot](docs/lighthouse/mobile-signup.png) | ![screenshot](docs/lighthouse/desktop-signup.png) | Good performance and accessibility |
-
-## Defensive Programming
-
-Defensive programming was manually tested with the below user acceptance testing:
-
-| Page | Expectation | Test | Result | Screenshot | Screenshot (Additional) |
-| --- | --- | --- | --- | --- | --- |
-| Home | Feature is expected to display all forums to any user. | Opened homepage as guest and authenticated user. | All forums displayed correctly for both user types. | ![screenshot](docs/defensive/home-forums.png) | |
-| | Feature is expected to show create post button only to authenticated users. | Checked homepage as guest and authenticated user. | Create post button only visible when logged in. | ![screenshot](docs/defensive/create-post-auth.png) | |
-| Forums | Feature is expected to display posts in selected forum. | Clicked on different forums to view posts. | Posts filtered correctly by forum category. | ![screenshot](docs/defensive/forum-posts.png) | |
-| | Feature is expected to show like buttons only to authenticated users. | Viewed forum posts as guest and authenticated user. | Like buttons only visible when logged in. | ![screenshot](docs/defensive/like-auth.png) | |
-| Post Creation | Feature is expected to redirect unauthenticated users to login. | Attempted to access create post URL while logged out. | Redirected to login page successfully. | ![screenshot](docs/defensive/create-post-redirect.png) | |
-| | Feature is expected to allow authenticated users to create posts. | Created posts with various content and images. | Posts created successfully with all form fields. | ![screenshot](docs/defensive/create-post-success.png) | |
-| | Feature is expected to validate required fields. | Submitted form with empty title and content. | Form validation prevented submission with clear error messages. | ![screenshot](docs/defensive/create-post-validation.png) | |
-| Post Management | Feature is expected to allow only post authors to edit their posts. | Attempted to edit another user's post via URL manipulation. | Access denied - 404 error displayed. | ![screenshot](docs/defensive/edit-post-denied.png) | |
-| | Feature is expected to allow only post authors to delete their posts. | Attempted to delete another user's post via URL manipulation. | Access denied - 404 error displayed. | ![screenshot](docs/defensive/delete-post-denied.png) | |
-| | Feature is expected to show edit/delete options only to post authors. | Viewed posts as author and non-author. | Edit/delete buttons only visible to post authors. | ![screenshot](docs/defensive/post-author-controls.png) | |
-| Likes System | Feature is expected to allow authenticated users to like/unlike posts. | Clicked like button on various posts. | Like count updated correctly, toggle functionality worked. | ![screenshot](docs/defensive/like-toggle.png) | |
-| | Feature is expected to prevent duplicate likes from same user. | Attempted to like same post multiple times. | System prevented duplicate likes correctly. | ![screenshot](docs/defensive/like-prevent-duplicate.png) | |
-| Comments | Feature is expected to allow authenticated users to add comments. | Posted comments on various posts. | Comments added successfully and displayed correctly. | ![screenshot](docs/defensive/comment-add.png) | |
-| | Feature is expected to require authentication for commenting. | Attempted to access comment form while logged out. | Comment form only visible when authenticated. | ![screenshot](docs/defensive/comment-auth.png) | |
-| | Feature is expected to validate comment content. | Submitted empty comment form. | Validation prevented submission of empty comments. | ![screenshot](docs/defensive/comment-validation.png) | |
-| Forums (Admin) | Feature is expected to allow superusers to create forums. | Created new forum as admin user. | Forum created successfully and appeared in listings. | ![screenshot](docs/defensive/create-forum-admin.png) | |
-| | Feature is expected to prevent non-admin users from creating forums. | Attempted to access create forum URL as regular user. | Access redirected to home page with error message. | ![screenshot](docs/defensive/create-forum-denied.png) | |
-| CSRF Protection | Feature is expected to reject forms without CSRF tokens. | Submitted forms with CSRF token removed. | Forms rejected with 403 Forbidden error. | ![screenshot](docs/defensive/csrf-protection.png) | |
-| XSS Prevention | Feature is expected to escape malicious script tags in content. | Submitted post with `<script>` tags in content. | Script tags escaped and displayed as text. | ![screenshot](docs/defensive/xss-prevention.png) | |
-| File Upload | Feature is expected to handle image uploads securely. | Uploaded various image formats and sizes. | Images processed correctly with UUID naming. | ![screenshot](docs/defensive/image-upload.png) | |
-| | Feature is expected to reject non-image files. | Attempted to upload non-image files. | File uploads rejected with appropriate error messages. | ![screenshot](docs/defensive/file-upload-validation.png) | |
-| 404 Error | Feature is expected to display custom 404 page for invalid URLs. | Navigated to non-existent URLs. | Custom 404 page displayed correctly. | ![screenshot](docs/defensive/404-page.png) | |
 
 ## User Story Testing
 
@@ -163,9 +122,7 @@ To see the HTML version of the reports, and find out whether some pieces of code
 - `coverage html`
 - `python -m http.server`
 
-Below are the results from the full coverage report on my application that I've tested:
 
-![screenshot](docs/automation/html-coverage.png)
 
 #### Unit Test Issues
 

@@ -80,11 +80,11 @@ I've tested my deployed project on multiple browsers to check for compatibility 
 
 | Target | Expectation | Outcome | Screenshot |
 | --- | --- | --- | --- |
-| As a new user | I would like to easily understand what the site is about | so that I can decide if I want to register and participate. | ![screenshot](docs/user-stories/homepage-clear.png) |
-| As a new user | I would like to browse content without registering | so that I can explore before committing to create an account. | ![screenshot](docs/user-stories/browse-guest.png) |
-| As a new user | I would like to easily sign up for an account | so that I can start creating and engaging with content. | ![screenshot](docs/user-stories/easy-signup.png) |
-| As a user | I would like to create blog posts with rich text and images | so that I can share my stories in an engaging format. | ![screenshot](docs/user-stories/create-rich-post.png) |
-| As a user | I would like to categorize my posts into different forums | so that readers can find content that interests them. | ![screenshot](docs/user-stories/categorize-posts.png) |
+| As a new user | I would like to easily understand what the site is about | so that I can decide if I want to register and participate. | ![screenshot](documentation/validation/chrome_browser.PNG) |
+| As a new user | I would like to browse content without registering | so that I can explore before committing to create an account. | ![screenshot](documentation/user-stories/guest_user_experience.PNG) |
+| As a new user | I would like to easily sign up for an account | so that I can start creating and engaging with content. | ![screenshot](documentation/user-stories/new_user_signup.PNG) |
+| As a user | I would like to create blog posts with rich text and images | so that I can share my stories in an engaging format. | ![screenshot](documentation/validation/chrome_createpost.PNG) |
+| As a user | I would like to categorize my posts into different forums | so that readers can find content that interests them. | ![screenshot](documentation/user-stories/different_forum.PNG) |
 | As a user | I would like to edit my own posts | so that I can update or improve my content after publishing. | ![screenshot](docs/user-stories/edit-own-posts.png) |
 | As a user | I would like to delete my own posts | so that I can remove content I no longer want published. | ![screenshot](docs/user-stories/delete-own-posts.png) |
 | As a user | I would like to like posts I enjoy | so that I can show appreciation to other authors. | ![screenshot](docs/user-stories/like-posts.png) |

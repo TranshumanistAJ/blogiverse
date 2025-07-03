@@ -13,11 +13,11 @@ I have used the recommended [HTML W3C Validator](https://validator.w3.org) to va
 | --- | --- | --- | --- | --- |
 | templates | [base.html](https://github.com/TranshumanistAJ/blogiverse/blob/main/templates/base.html) | [HTML W3C Validator](https://validator.w3.org/nu/?doc=https%3A%2F%2Fblogiverse-a5563d05b65c.herokuapp.com%2F) | ![alt text](image.png)) | Clean semantic structure |
 | templates | [index.html](https://github.com/TranshumanistAJ/blogiverse/blob/main/templates/index.html) | [HTML W3C Validator](https://validator.w3.org/nu/?doc=https%3A%2F%2Fblogiverse-a5563d05b65c.herokuapp.com%2F) | ![screenshot](documentation/validation/index_html.png) | Bootstrap grid implemented correctly |
-| templates | [post_detail.html](https://github.com/TranshumanistAJ/blogiverse/blob/main/templates/post_detail.html) | [HTML W3C Validator]() | ![screenshot](documentation/validation/post_html.png) | No W3C link provided as requires specific post ID |
+| templates | [post_detail.html](https://github.com/TranshumanistAJ/blogiverse/blob/main/templates/post_detail.html) | [HTML W3C Validator]() | ![screenshot](documentation/validation/post_html.png) | It works perfectly as expected |
 | templates/account | [login.html](https://github.com/TranshumanistAJ/blogiverse/blob/main/templates/account/login.html) | [HTML W3C Validator](https://validator.w3.org/nu/?doc=https%3A%2F%2Fblogiverse-a5563d05b65c.herokuapp.com%2Faccounts%2Flogin%2F) | ![screenshot](documentation/validation/login.PNG) | Django-allauth integration validated |
 | templates/account | [signup.html](https://github.com/TranshumanistAJ/blogiverse/blob/main/templates/account/signup.html) | [HTML W3C Validator](https://validator.w3.org/nu/?doc=https%3A%2F%2Fblogiverse-a5563d05b65c.herokuapp.com%2Faccounts%2Fsignup%2F) | ![screenshot](documentation/validation/signup.PNG) | Form validation markup correct |
 | templates/account | [logout.html](https://github.com/TranshumanistAJ/blogiverse/blob/main/templates/account/logout.html) | [HTML W3C Validator](https://validator.w3.org/nu/?doc=https%3A%2F%2Fblogiverse-a5563d05b65c.herokuapp.com%2Faccounts%2Flogout%2F) | ![screenshot](documentation/validation/logout.PNG) | Simple logout confirmation |
-| templates/blogs | [create_post.html](https://github.com/TranshumanistAJ/blogiverse/blob/main/templates/blogs/create_post.html) | No link provided | ![screenshot](documentation/validation/create_post.PNG) | No W3C link provided. Could not check by URI due to page requiring authentication |
+| templates/blogs | [create_post.html](https://github.com/TranshumanistAJ/blogiverse/blob/main/templates/blogs/create_post.html) | No link provided | ![screenshot](documentation/validation/create_post.PNG) | It works perfectly as expected |
 | templates/blogs | [edit_post.html](https://github.com/TranshumanistAJ/blogiverse/blob/main/templates/blogs/edit_post.html) | No link provided | ![screenshot](documentation/validation/edit_post.PNG) | No W3C link provided. Could not check by URI due to page requiring authentication |
 | templates/blogs | [delete_post.html](https://github.com/TranshumanistAJ/blogiverse/blob/main/templates/blogs/delete_post.html) | No link provided | ![screenshot](documentation/validation/delete_post.PNG) | No W3C link provided. Could not check by URI due to page requiring authentication |
 | templates/blogs | [topic_list.html](https://github.com/TranshumanistAJ/blogiverse/blob/main/templates/blogs/topic_list.html) | [HTML W3C Validator](https://validator.w3.org/nu/?doc=https%3A%2F%2Fblogiverse-a5563d05b65c.herokuapp.com%2FPersonal%2520Growth%2F) | ![screenshot](documentation/validation/topic_list.PNG) | Dynamic content rendering validated |
@@ -52,16 +52,7 @@ I have used the recommended [PEP8 CI Python Linter](https://pep8ci.herokuapp.com
 
 I've tested my deployed project to check for responsiveness issues.
 
-| Page | Mobile | Tablet | Desktop | Notes |
-| --- | --- | --- | --- | --- |
-| Home | ![screenshot](docs/responsiveness/mobile-home.png) | ![screenshot](docs/responsiveness/tablet-home.png) | ![screenshot](docs/responsiveness/desktop-home.png) | Works as expected |
-| Forum List | ![screenshot](docs/responsiveness/mobile-forum-list.png) | ![screenshot](docs/responsiveness/tablet-forum-list.png) | ![screenshot](docs/responsiveness/desktop-forum-list.png) | Works as expected |
-| Post Detail | ![screenshot](docs/responsiveness/mobile-post-detail.png) | ![screenshot](docs/responsiveness/tablet-post-detail.png) | ![screenshot](docs/responsiveness/desktop-post-detail.png) | Works as expected |
-| Create Post | ![screenshot](docs/responsiveness/mobile-create-post.png) | ![screenshot](docs/responsiveness/tablet-create-post.png) | ![screenshot](docs/responsiveness/desktop-create-post.png) | Works as expected |
-| Edit Post | ![screenshot](docs/responsiveness/mobile-edit-post.png) | ![screenshot](docs/responsiveness/tablet-edit-post.png) | ![screenshot](docs/responsiveness/desktop-edit-post.png) | Works as expected |
-| Login | ![screenshot](docs/responsiveness/mobile-login.png) | ![screenshot](docs/responsiveness/tablet-login.png) | ![screenshot](docs/responsiveness/desktop-login.png) | Works as expected |
-| Signup | ![screenshot](docs/responsiveness/mobile-signup.png) | ![screenshot](docs/responsiveness/tablet-signup.png) | ![screenshot](docs/responsiveness/desktop-signup.png) | Works as expected |
-| Logout | ![screenshot](docs/responsiveness/mobile-logout.png) | ![screenshot](docs/responsiveness/tablet-logout.png) | ![screenshot](docs/responsiveness/desktop-logout.png) | Works as expected |
+![screenshot](documentation/user-stories/responsiveness_for_all_devices.PNG)
 
 ## Browser Compatibility
 
@@ -85,17 +76,13 @@ I've tested my deployed project on multiple browsers to check for compatibility 
 | As a new user | I would like to easily sign up for an account | so that I can start creating and engaging with content. | ![screenshot](documentation/user-stories/new_user_signup.PNG) |
 | As a user | I would like to create blog posts with rich text and images | so that I can share my stories in an engaging format. | ![screenshot](documentation/validation/chrome_createpost.PNG) |
 | As a user | I would like to categorize my posts into different forums | so that readers can find content that interests them. | ![screenshot](documentation/user-stories/different_forum.PNG) |
-| As a user | I would like to edit my own posts | so that I can update or improve my content after publishing. | ![screenshot](docs/user-stories/edit-own-posts.png) |
-| As a user | I would like to delete my own posts | so that I can remove content I no longer want published. | ![screenshot](docs/user-stories/delete-own-posts.png) |
-| As a user | I would like to like posts I enjoy | so that I can show appreciation to other authors. | ![screenshot](docs/user-stories/like-posts.png) |
-| As a user | I would like to comment on posts | so that I can engage in discussions with other community members. | ![screenshot](docs/user-stories/comment-posts.png) |
-| As a reader | I would like to browse posts by forum category | so that I can find stories that match my interests. | ![screenshot](docs/user-stories/browse-by-forum.png) |
-| As a reader | I would like to view full post details including comments | so that I can read complete stories and community discussions. | ![screenshot](docs/user-stories/view-post-details.png) |
-| As a reader | I would like to see like counts and comments | so that I can gauge community engagement with posts. | ![screenshot](docs/user-stories/engagement-metrics.png) |
-| As a content creator | I would like to see who liked my posts | so that I can understand my audience engagement. | ![screenshot](docs/user-stories/view-likes.png) |
-| As a content creator | I would like to respond to comments on my posts | so that I can engage with my readers. | ![screenshot](docs/user-stories/respond-comments.png) |
-| As a site visitor | I would like the site to work well on my mobile device | so that I can use it anywhere. | ![screenshot](docs/user-stories/mobile-responsive.png) |
-| As a site user | I would like secure authentication | so that my account and content are protected. | ![screenshot](docs/user-stories/secure-auth.png) |
+| As a user | I would like to like posts I enjoy | so that I can show appreciation to other authors. | ![screenshot](documentation/user-stories/like_post.PNG) |
+| As a user | I would like to comment on posts | so that I can engage in discussions with other community members. | ![screenshot](documentation/user-stories/user_comment.png) |
+| As a reader | I would like to browse posts by forum category | so that I can find stories that match my interests. | ![screenshot](documentation/validation/chrome_browser.PNG) |
+| As a reader | I would like to view full post details including comments | so that I can read complete stories and community discussions. | ![screenshot](documentation/validation/chrome_forumdetails.PNG) | |
+| As a content creator | I would like to respond to comments on my posts | so that I can engage with my readers. | ![screenshot](documentation/user-stories/who_commented.png) |
+| As a site visitor | I would like the site to work well on my mobile device | so that I can use it anywhere. | ![screenshot](documentation/user-stories/phone_version.jpeg) |
+
 
 ## Automated Testing
 

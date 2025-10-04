@@ -38,7 +38,7 @@ def blog_detail(request, post_id):
             comment.save()  # Saves comment to database
             messages.success(request, "Comment added!")  # Shows success message
             return redirect('blogs/blog_detail', post_id=post.id)  # Redirects to same post
-    return render(request, 'post_detail.html', {'post': post, 'comments': comments, 'comment_form': comment_form})  # Renders post_detail.html
+    return render(request, 'blogs/post_detail.html', {'post': post, 'comments': comments, 'comment_form': comment_form})  # Renders post_detail.html
 
 # Handles post creation, restricted to logged-in users
 @login_required
@@ -67,17 +67,23 @@ def create_forum(request):
     else:  # If GET requesta
         form = ForumForm()  # Initializes empty form
     return render(request, 'blogs/create_forum.html', {'form': form})  # Renders create_forum.html
-
 # Handles post editing, restricted to post author
 @login_required
 def edit_post(request, post_id):
-    post = get_object_or_404(BlogPost, id=post_id, author=request.user)  # Fetches post by ID and author or returns 404
+    post = get_object_or_404(BlogPost, id=post_id)  # Fetches post by ID
+    # check if the logged-in user is the same as the blog post author
+    if request.user != post.author:
+        # they don't match, access denied, take them back to the blog post page
+        messages.error(request, "Access denied, you have no permission to edit this post.")
+        return redirect('blog_detail', post_id=post.id)
+
+    # logged-in user is the author, proceed as normal
     if request.method == 'POST':  # If form is submitted
         form = BlogPostForm(request.POST, request.FILES, instance=post)  # Populates form with POST, files, and existing post
         if form.is_valid():  # Validates form
             form.save()  # Updates post in database
             messages.success(request, "Post updated successfully!")  # Shows success message
-            return redirect('blogs/blog_detail', post_id=post.id)  # Redirects to updated post
+            return redirect('blog_detail', post_id=post.id)  # Redirects to updated post
     else:  # If GET request
         form = BlogPostForm(instance=post)  # Initializes form with existing post data
     return render(request, 'blogs/edit_post.html', {'form': form, 'post': post})  # Renders edit_post.html
@@ -85,11 +91,18 @@ def edit_post(request, post_id):
 # Handles post deletion, restricted to post author
 @login_required
 def delete_post(request, post_id):
-    post = get_object_or_404(BlogPost, id=post_id, author=request.user)  # Fetches post by ID and author or returns 404
+    post = get_object_or_404(BlogPost, id=post_id)  # Fetches post by ID
+    # check if the logged-in user is the same as the blog post author
+    if request.user != post.author:
+        # they don't match, access denied, take them back to the blog post page
+        messages.error(request, "Access denied, you have no permission to delete this post.")
+        return redirect('blog_detail', post_id=post.id)
+
+    # logged-in user is the author, proceed as normal
     if request.method == 'POST':  # If form is submitted
         post.delete()  # Deletes post from database
         messages.success(request, "Post deleted successfully!")  # Shows success message
-        return redirect('blogs/topic_list', forum_name=post.forum.name)  # Redirects to forum
+        return redirect('topic_list', forum_name=post.forum.name)  # Redirects to forum
     return render(request, 'blogs/delete_post.html', {'post': post})  # Renders delete_post.html
 
 # Handles liking/unliking posts, restricted to logged-in users

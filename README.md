@@ -475,7 +475,63 @@ Comprehensive testing was conducted to ensure Blogiverse meets all functional an
 * **HTML5** - Semantic markup for content structure and accessibility
 * **CSS3** - Advanced styling with custom properties, flexbox, and grid layouts
 * **JavaScript** - Client-side interactivity and dynamic user interface features
-* **Python 3.8+** - Backend development with Django framework implementation
+* **Python 3.8+** - Backend development with Django framework implementation.
+
+## Database Design
+
+### Data Model
+
+Entity Relationship Diagrams (ERD) help to visualize database architecture before creating models. Understanding the relationships between different tables can save time later in the project.
+
+I have used `Mermaid` to generate an interactive ERD of my project.
+
+```mermaid
+erDiagram
+    USER {
+        int id PK
+        string username
+        string email
+        string password
+        datetime last_login
+        datetime date_joined
+        bool is_active
+        bool is_staff
+        bool is_superuser
+    }
+
+    FORUM {
+        int id PK
+        string name UK
+        text description
+    }
+
+    BLOG_POST {
+        int id PK
+        string title UK
+        text content
+        string photo_ref
+        datetime created_at
+        int author_id FK
+        int forum_id FK
+    }
+
+    COMMENT {
+        int id PK
+        text content
+        datetime created_at
+        int post_id FK
+        int author_id FK
+    }
+
+    %% Relationships
+    USER ||--o{ BLOG_POST : "author"
+    FORUM ||--o{ BLOG_POST : "forum"
+    BLOG_POST ||--o{ COMMENT : "comments"
+    USER ||--o{ COMMENT : "author"
+    BLOG_POST }o--o{ USER : "likes"
+```
+
+source: [Mermaid](https://mermaid.live/edit#pako:eNqNU8tu2zAQ_BWCQG6OIb-qWMfm0UPqOrDrS2FAYKSVxEbiCuSqTero30PKdixXAhKeyJ3h7O6Qu-MRxsADDvpGilSLYquYXZv17Yrt9nu3pCImY_ZwfwoZ0lKlrDKglSigA0AhZN6JlsKYv6jjExALApIFsFwYCnNMpeoB3Sb8jVJB6-ojYs6kCUVE8g9044ZEkvSEqxK0q3sP1dtDwrvlarP4XNeuY7ZpxQmeicVgIi1Lkqj-k_76ffktfFiuf35OniTlPfoRKgJFXVMzJAw1JD3GRRrsNg4FnScWFWWoQ5v_7v4cSVBXRRt47-J6uVjc_vioh_5SPyyoRPv8PeV0C32v5-KCrSAXzm-TydK0_u7r6-Ul7lq-B2zL91Jb3n7uXmJjwZF3gg7cow2OGWFR2D7NkdxO3uadpz5J1thQm2uOl8snaMT4gBeg7QzFdjobw7ecMrCDxh0vFvrJ0WrLs9q4flERD0hXMOBV6cw-zPMxWArFgx1_5sFoPhvOJ1dTfzqe-L43-jLgLzY6Hvozz_Mm0_nUG838cT3g_xDtfW945c8agV_Nea-nsUozHiQiN_aUalfnAQEVg77GShEP5vUbA11QIQ)
 
 ### ***Frameworks & Libraries:***
 

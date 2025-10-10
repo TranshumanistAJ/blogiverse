@@ -65,8 +65,6 @@ I've tested my deployed project on multiple browsers to check for compatibility 
 | Post Creation  | ![Chrome Create](documentation/validation/chrome_createpost.PNG)    | ![Firefox Create](documentation/validation/firefox_createpost.PNG)    | ![Edge Create](documentation/validation/edge_createpost.PNG)          | Form functions properly and looks good        |
 | Authentication | ![Chrome Login](documentation/validation/chrome_login.PNG)          | ![Firefox Login](documentation/validation/firefox_login.PNG)          | ![Edge Login](documentation/validation/edge_login.PNG)                | Seamless login experience across platforms    |
 
-
-
 ## User Story Testing
 
 | Target | Expectation | Outcome | Screenshot |
@@ -82,7 +80,6 @@ I've tested my deployed project on multiple browsers to check for compatibility 
 | As a reader | I would like to view full post details including comments | so that I can read complete stories and community discussions. | ![screenshot](documentation/validation/chrome_forumdetails.PNG) | |
 | As a content creator | I would like to respond to comments on my posts | so that I can engage with my readers. | ![screenshot](documentation/user-stories/who_commented.png) |
 | As a site visitor | I would like the site to work well on my mobile device | so that I can use it anywhere. | ![screenshot](documentation/user-stories/phone_version.jpeg) |
-
 
 ## Automated Testing
 
@@ -109,21 +106,22 @@ To see the HTML version of the reports, and find out whether some pieces of code
 - `coverage html`
 - `python -m http.server`
 
-
-
 #### Unit Test Issues
 
 No significant issues encountered during unit testing. All tests pass successfully.
 
+## Defensive Programming
+
+Proper CRUD (Create, Read, Update, Delete) functionality has been implemented to ensure that only the authorized blog post author can edit or delete their posts. This is enforced through Django's authentication and permission system, which restricts access to the edit and delete views for unauthorized users. If a user attempts to access these pages by brute-forcing the URL, they are met with an access denied error.
+
+| Scenario | Screenshot | Notes |
+| --- | --- | --- |
+| Unauthorized Edit Attempt | ![Access Denied Edit](documentation/validation/editdenied.png) | Displays access denied message when a user tries to edit a post they do not own. |
+| Unauthorized Delete Attempt | ![Access Denied Delete](documentation/validation/deletedenied.png) | Displays access denied message when a user tries to delete a post they do not own. |
+
 ## Bugs
 
-
-
-
-
 ### Unfixed Bugs
-
-
 
 Currently, there are no known unfixed bugs.
 

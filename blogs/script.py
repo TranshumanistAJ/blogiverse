@@ -1,4 +1,4 @@
-#from blogs.models import Forum, BlogPost
+# from blogs.models import Forum, BlogPost
 from django.utils import timezone
 
 import os

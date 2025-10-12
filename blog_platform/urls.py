@@ -6,8 +6,10 @@ from django.urls import path, include  # Imports path for URL patterns, include 
 from django.conf import settings  # Imports settings for media/static URLs
 from django.conf.urls.static import static  # Serves media files during development
 from blogs import views  # Imports views from blogs app (correct source for view functions)
+from django.conf import settings
+from django.conf.urls.static import static
 
-# Defines project-wide URL 
+# Defines project-wide URL
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
@@ -23,8 +25,6 @@ urlpatterns = [
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
-from django.conf import settings
-from django.conf.urls.static import static
 
 if not settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

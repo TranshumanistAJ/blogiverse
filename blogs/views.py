@@ -8,11 +8,13 @@ from django.http import JsonResponse  # Imports JsonResponse for AJAX responses 
 from .models import Forum, BlogPost, Comment  # Imports models for forums, posts, and comments
 from .forms import BlogPostForm, ForumForm, CommentForm  # Imports forms for creating/editing posts, forums, and comments
 
+
 # Displays the homepage with all forums
 def home(request):
     forums = Forum.objects.all()  # Fetches all forums from the database
     print(forums)
     return render(request, 'index.html', {'forums': forums})  # Renders index.html with forums context
+
 
 # Lists posts, optionally filtered by forum
 def topic_list(request, forum_name=None):
@@ -23,6 +25,7 @@ def topic_list(request, forum_name=None):
         posts = BlogPost.objects.all()  # Fetches all posts
     
     return render(request, 'blogs/topic_list.html', {'forum': forum if forum_name else None, 'posts': posts})  # Renders topic_list.html
+
 
 # Displays a single post with comments and comment form
 def blog_detail(request, post_id):
@@ -40,6 +43,7 @@ def blog_detail(request, post_id):
             return redirect('blogs/blog_detail', post_id=post.id)  # Redirects to same post
     return render(request, 'blogs/post_detail.html', {'post': post, 'comments': comments, 'comment_form': comment_form})  # Renders post_detail.html
 
+
 # Handles post creation, restricted to logged-in users
 @login_required
 def create_post(request):
@@ -54,6 +58,7 @@ def create_post(request):
     else:  # If GET request
         form = BlogPostForm()  # Initializes empty form
     return render(request, 'blogs/create_post.html', {'form': form})  # Renders create_post.html
+
 
 # Handles forum creation, restricted to logged-in users
 @login_required
@@ -77,6 +82,7 @@ def edit_post(request, post_id):
         messages.error(request, "Access denied, you have no permission to edit this post.")
         return redirect('blog_detail', post_id=post.id)
 
+
     # logged-in user is the author, proceed as normal
     if request.method == 'POST':  # If form is submitted
         form = BlogPostForm(request.POST, request.FILES, instance=post)  # Populates form with POST, files, and existing post
@@ -87,6 +93,7 @@ def edit_post(request, post_id):
     else:  # If GET request
         form = BlogPostForm(instance=post)  # Initializes form with existing post data
     return render(request, 'blogs/edit_post.html', {'form': form, 'post': post})  # Renders edit_post.html
+
 
 # Handles post deletion, restricted to post author
 @login_required
@@ -105,6 +112,7 @@ def delete_post(request, post_id):
         return redirect('topic_list', forum_name=post.forum.name)  # Redirects to forum
     return render(request, 'blogs/delete_post.html', {'post': post})  # Renders delete_post.html
 
+
 # Handles liking/unliking posts, restricted to logged-in users
 @login_required
 def like_post(request, post_id):
@@ -116,6 +124,7 @@ def like_post(request, post_id):
         post.likes.add(request.user)  # Adds like
         messages.success(request, "Post liked!")  # Shows success message
     return redirect('blog_detail', post_id=post.id)  # or post_id=post_id
+
 
 # Handles adding comments, restricted to logged-in users
 @login_required

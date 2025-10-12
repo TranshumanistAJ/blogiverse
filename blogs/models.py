@@ -4,13 +4,16 @@
 from django.db import models  # Imports Django's model framework for database interaction
 from django.contrib.auth.models import User  # Imports User model for authentication
 from django.utils import timezone
-import uuid, os
+import uuid
+import os
 from cloudinary.models import CloudinaryField
+
 
 def unique_blog_photo_path(instance, filename):
     ext = filename.split('.')[-1]
     filename = f"{uuid.uuid4().hex}.{ext}"
     return os.path.join('blog_photos', filename)
+
 
 # Defines the Forum model for categorizing posts
 class Forum(models.Model):
@@ -19,6 +22,7 @@ class Forum(models.Model):
 
     def __str__(self):
         return self.name  # Returns forum name as string representation
+
 
 # Defines the BlogPost model for user-created posts
 class BlogPost(models.Model):
@@ -35,6 +39,7 @@ class BlogPost(models.Model):
 
     def __str__(self):
         return self.title  # Returns post title as string representation
+
 
 # Defines the Comment model for user comments on posts
 class Comment(models.Model):

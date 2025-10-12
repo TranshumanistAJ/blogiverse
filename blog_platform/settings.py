@@ -25,7 +25,8 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1'
 ]
-CSRF_TRUSTED_ORIGINS = ['https://blogiverse-a5563d85b65c.herokuapp.com','https://*.gitpod.io']
+CSRF_TRUSTED_ORIGINS = [
+    'https://blogiverse-a5563d85b65c.herokuapp.com','https://*.gitpod.io']
 
 # Installed apps for Django functionality
 INSTALLED_APPS = [
@@ -70,7 +71,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',  # User auth
     'allauth.account.middleware.AccountMiddleware',  # Allauth middleware
     'django.contrib.messages.middleware.MessageMiddleware',  # Messages
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',  # Frame protection
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',  # protection
 ]
 
 # Root URL configuration

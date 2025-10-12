@@ -4,6 +4,7 @@
 from django import forms  # Imports Django’s forms framework
 from .models import BlogPost, Forum, Comment  # Imports models for form validation
 
+
 # Form for creating/editing blog posts
 class BlogPostForm(forms.ModelForm):
     class Meta:
@@ -18,6 +19,7 @@ class BlogPostForm(forms.ModelForm):
             'forum': forms.Select(),
         }  # Defines input widgets for better UX
 
+
 # Form for creating/editing forums
 class ForumForm(forms.ModelForm):
     class Meta:
@@ -29,6 +31,7 @@ class ForumForm(forms.ModelForm):
             # Customizes description field with placeholder
             'description': forms.Textarea(attrs={'placeholder': 'Describe the forum'}),
         }  # Defines input widgets for clarity
+
 
 # Form for adding comments
 class CommentForm(forms.ModelForm):

@@ -77,8 +77,10 @@ I've tested my deployed project on multiple browsers to check for compatibility 
 | As a user | I would like to like posts I enjoy | so that I can show appreciation to other authors. | ![screenshot](documentation/user-stories/like_post.PNG) |
 | As a user | I would like to comment on posts | so that I can engage in discussions with other community members. | ![screenshot](documentation/user-stories/user_comment.png) |
 | As a reader | I would like to browse posts by forum category | so that I can find stories that match my interests. | ![screenshot](documentation/validation/chrome_browser.PNG) |
-| As a reader | I would like to view full post details including comments | so that I can read complete stories and community discussions. | ![screenshot](documentation/validation/chrome_forumdetails.PNG) | |
+| As a reader | I would like to view full post details including comments | so that I can read complete stories and community discussions. | ![screenshot](documentation/validation/chrome_forumdetails.PNG) |
 | As a content creator | I would like to respond to comments on my posts | so that I can engage with my readers. | ![screenshot](documentation/user-stories/who_commented.png) |
+| As a user | I would like to edit my own blog posts | so that I can update or correct any information after publishing. | ![screenshot](documentation/user-stories/edit__post.PNG) |
+| As a user | I would like to delete my own blog posts | so that I can remove content I no longer wish to share. | ![screenshot](documentation/user-stories/delete__post.PNG) |
 | As a site visitor | I would like the site to work well on my mobile device | so that I can use it anywhere. | ![screenshot](documentation/user-stories/phone_version.jpeg) |
 
 ## Automated Testing

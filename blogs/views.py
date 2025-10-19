@@ -73,6 +73,8 @@ def create_forum(request):
         form = ForumForm()  # Initializes empty form
     return render(request, 'blogs/create_forum.html', {'form': form})  # Renders create_forum.html
 # Handles post editing, restricted to post author
+
+
 @login_required
 def edit_post(request, post_id):
     post = get_object_or_404(BlogPost, id=post_id)  # Fetches post by ID
@@ -83,7 +85,7 @@ def edit_post(request, post_id):
         return redirect('blog_detail', post_id=post.id)
 
 
-    # logged-in user is the author, proceed as normal
+# logged-in user is the author, proceed as normal
     if request.method == 'POST':  # If form is submitted
         form = BlogPostForm(request.POST, request.FILES, instance=post)  # Populates form with POST, files, and existing post
         if form.is_valid():  # Validates form

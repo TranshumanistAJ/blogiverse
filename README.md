@@ -685,9 +685,9 @@ source: [Mermaid](https://mermaid.live/edit#pako:eNqNU8tu2zAQ_BWCQG6OIb-qWMfm0UP
 ### **Richard Wells**
 My mentor at Code Institute, whose exceptional guidance, patience, and technical expertise were instrumental in overcoming complex development challenges. His insights into Django best practices, database design, and deployment strategies helped shape the project's architecture and success.
 
-### **Tim Wilson**
+### **Tim Nelson**
 
- A special thank you also goes to **Tim Wilson**, my former mentor, whose early mentorship laid the foundation for my growth as a developer.
+ A special thank you also goes to **Tim Nelson**, my former mentor, whose early mentorship laid the foundation for my growth as a developer.
 Their expertise and dedication have made a lasting impact on my learning journey.
 
 ### **Code Institute Community:**

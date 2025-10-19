@@ -4,6 +4,7 @@
 from pathlib import Path
 import os
 import dj_database_url
+from django.contrib.messages import constants as messages
 
 # Load env.py if present for local development
 if os.path.isfile('env.py'):
@@ -26,7 +27,7 @@ ALLOWED_HOSTS = [
     '127.0.0.1'
 ]
 CSRF_TRUSTED_ORIGINS = [
-    'https://blogiverse-a5563d85b65c.herokuapp.com','https://*.gitpod.io']
+    'https://blogiverse-a5563d85b65c.herokuapp.com', 'https://*.gitpod.io']
 
 # Installed apps for Django functionality
 INSTALLED_APPS = [
@@ -111,7 +112,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Bootstrap message tags
-from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {
     messages.DEBUG: 'alert-info',
     messages.INFO: 'alert-info',

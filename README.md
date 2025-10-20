@@ -591,9 +591,17 @@ source: [Mermaid](https://mermaid.live/edit#pako:eNqNU8tu2zAQ_BWCQG6OIb-qWMfm0UP
    ```python
    import os
    
-   os.environ["DATABASE_URL"] = "your-database-url"
-   os.environ["SECRET_KEY"] = "your-secret-key"
-   os.environ["DEVELOPMENT"] = "True"
+For local development, you can define the same environment variables directly in your Python code:
+
+```python
+import os
+
+os.environ["CLOUDINARY_API_KEY"] = "your-cloudinary-api-key"
+os.environ["CLOUDINARY_API_SECRET"] = "your-cloudinary-api-secret"
+os.environ["CLOUDINARY_CLOUD_NAME"] = "your-cloudinary-cloud-name"
+os.environ["DATABASE_URL2"] = "your-database-url"
+os.environ["DEVELOPMENT"] = "True"
+os.environ["SECRET_KEY"] = "your-secret-key"
    ```
 
 5. **Database Setup**
@@ -624,10 +632,12 @@ source: [Mermaid](https://mermaid.live/edit#pako:eNqNU8tu2zAQ_BWCQG6OIb-qWMfm0UP
 2. **Configure Environment Variables**
    Set the following config vars in Heroku Dashboard:
    ```bash
-   DATABASE_URL=<your-neon-postgres-url>
-   SECRET_KEY=<your-django-secret-key>
-   DEBUG=False
-   PORT=8000
+   CLOUDINARY_API_KEY=<your-cloudinary-api-key>
+   CLOUDINARY_API_SECRET=<your-cloudinary-api-secret>
+   CLOUDINARY_CLOUD_NAME=<your-cloudinary-cloud-name>
+   DATABASE_URL2=<your-production-database-url>
+   SECRET_KEY=<your-production-secret-key>
+   DEVELOPMENT=False
    ```
 
 3. **Connect GitHub Repository**

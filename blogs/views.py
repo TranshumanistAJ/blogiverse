@@ -138,3 +138,47 @@ def add_comment(request, post_id):
             Comment.objects.create(post=post, author=request.user, content=content)  # Creates new comment
             messages.success(request, "Comment added!")  # Shows success message
     return redirect('blog_detail', post_id=post.id)  # or post_id=post_id
+
+
+# Handles editing a comment (only the comment author can edit)
+@login_required
+def edit_comment(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id)
+    # only the comment author can edit
+    if request.user != comment.author:
+        messages.error(request, "Access denied, you have no permission to edit this comment.")
+        return redirect('blog_detail', post_id=comment.post.id)
+
+    if request.method == 'POST':
+        content = request.POST.get('content')
+        if content is not None:
+            comment.content = content
+            comment.save()
+            messages.success(request, "Comment updated!")
+        return redirect('blog_detail', post_id=comment.post.id)
+
+    # If not POST, just go back to the post
+    # Render an edit page (reuse edit_post.html to avoid adding new files)
+    from .forms import CommentForm
+    form = CommentForm(instance=comment)
+    return render(request, 'blogs/edit_post.html', {'form': form, 'comment': comment, 'post': comment.post})
+
+
+# Handles deleting a comment (only the comment author can delete)
+@login_required
+def delete_comment(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id)
+    # only the comment author can delete
+    if request.user != comment.author:
+        messages.error(request, "Access denied, you have no permission to delete this comment.")
+        return redirect('blog_detail', post_id=comment.post.id)
+
+    if request.method == 'POST':
+        post = comment.post
+        comment.delete()
+        messages.success(request, "Comment deleted!")
+        return redirect('blog_detail', post_id=post.id)
+
+    # For GET requests, redirect back to post
+    # Render a delete confirmation page (reuse delete_post.html)
+    return render(request, 'blogs/delete_post.html', {'comment': comment, 'post': comment.post})

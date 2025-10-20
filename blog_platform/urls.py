@@ -21,6 +21,8 @@ urlpatterns = [
     path('create-forum/', views.create_forum, name='create_forum'),
     path('like/<int:post_id>/', views.like_post, name='like_post'),
     path('comment/<int:post_id>/', views.add_comment, name='add_comment'),  # ✅ This was missing
+    path('comment/<int:comment_id>/edit/', views.edit_comment, name='edit_comment'),
+    path('comment/<int:comment_id>/delete/', views.delete_comment, name='delete_comment'),
     path('<str:forum_name>/', views.topic_list, name='topic_list'),  # Keep this LAST
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

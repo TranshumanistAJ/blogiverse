@@ -317,46 +317,10 @@ Robust security implementation throughout the platform:
 
 ## **Future Enhancements**
 
-### ***Social Media Integration:***
-* **Share Buttons** - Easy sharing to Twitter, Facebook, LinkedIn
-* **Social Login** - Authentication via Google, Facebook, GitHub  
-* **Cross-Platform Promotion** - Automated sharing options for new posts
-* **Social Media Preview Cards** - Rich preview cards when sharing externally
-
-### ***Enhanced User Profiles:***
-* **Personal Bio** - Detailed user information and writing background
-* **Post Portfolio** - Showcase of user's published content with statistics
-* **Achievement Badges** - Recognition system for community contributions
-* **Follow System** - Subscribe to favorite authors for content updates
-* **User Statistics** - Writing analytics and engagement metrics
-
-### ***Advanced Search & Discovery:***
-* **Full-Text Search** - Comprehensive search across post content, titles, and authors
-* **Advanced Filters** - Filter by date range, popularity, author, forum, and tags
-* **Trending Content** - Algorithm-based highlighting of popular and rising posts
-* **Personalized Recommendations** - AI-powered content suggestions based on reading history
-* **Saved Posts** - Bookmark functionality for favorite content
-
-### ***Tagging System:***
-* **Content Tags** - User-defined tags for better content categorization
-* **Tag-Based Filtering** - Enhanced content discovery through tag navigation
-* **Popular Tags** - Trending topics and themes across the platform
-* **Auto-Suggestions** - Smart tag recommendations based on content analysis
-* **Tag Analytics** - Insights into popular topics and trends
-
-### ***Analytics Dashboard:***
-* **User Analytics** - Personal engagement statistics and writing insights
-* **Admin Insights** - Community health, growth metrics, and content performance
-* **Content Performance** - Detailed analytics on post views, likes, and comments
-* **Export Capabilities** - Data export functionality for further analysis
-* **Real-time Metrics** - Live engagement tracking and community statistics
-
-### ***Enhanced Communication:***
-* **Direct Messaging** - Private communication system between users
-* **Comment Threading** - Nested comment conversations for better discussions
-* **Notification System** - Real-time updates on likes, comments, and follows
-* **Email Digests** - Customizable weekly summaries of community activity
-* **Mention System** - User tagging in posts and comments
+* **Search Functionality** - Enable searching for blogs by title, content, author, or category to quickly find relevant posts.
+* **Catagory Subscription** - Allow users to subscribe to specific categories and receive notifications for new posts in their interests.
+* **Follow & Unfollow System** - Enable following and unfollowing other users to stay updated on their latest blog posts.
+* **Email Notifications & Newsletters** - Provide email notifications and newsletters to keep users informed about new posts, replies, and trending topics.
 
 # **Design & User Experience**
 

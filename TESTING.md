@@ -82,34 +82,6 @@ I've tested my deployed project on multiple browsers to check for compatibility 
 | As a user | I would like to delete my own blog posts | so that I can remove content I no longer wish to share. | ![screenshot](documentation/user-stories/delete__post.PNG) |
 | As a site visitor | I would like the site to work well on my mobile device | so that I can use it anywhere. | ![screenshot](documentation/user-stories/phone_version.jpeg) |
 
-## Automated Testing
-
-I have conducted a series of automated tests on my application.
-
-> [!NOTE]
-> I fully acknowledge and understand that, in a real-world scenario, an extensive set of additional tests would be more comprehensive.
-
-### Python (Unit Testing)
-
-I have used Django's built-in unit testing framework to test the application functionality. In order to run the tests, I ran the following command in the terminal each time:
-
-- `python manage.py test blogs`
-
-To create the coverage report, I would then run the following commands:
-
-- `pip install coverage`
-- `pip freeze --local > requirements.txt`
-- `coverage run --source='.' --omit=*/site-packages/*,*/migrations/*,*/__init__.py,env.py,manage.py manage.py test`
-- `coverage report`
-
-To see the HTML version of the reports, and find out whether some pieces of code were missing, I ran the following commands:
-
-- `coverage html`
-- `python -m http.server`
-
-#### Unit Test Issues
-
-No significant issues encountered during unit testing. All tests pass successfully.
 
 ## Defensive Programming
 

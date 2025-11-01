@@ -635,18 +635,20 @@ os.environ["SECRET_KEY"] = "your-secret-key"
 # **Credits & Acknowledgements**
 
 ## **Technical Resources:**
-* **Django Documentation** - Comprehensive framework guidance and best practices
-* **Bootstrap Documentation** - Responsive design patterns and component implementation
-* **Django-allauth Documentation** - Authentication system integration and customization
-* **Summernote Documentation** - Rich text editor implementation and configuration
-* **PostgreSQL Documentation** - Database optimization and query performance
-* **Heroku Dev Center** - Deployment guides and platform-specific configurations
+* **[Django Documentation](https://docs.djangoproject.com/)** – Comprehensive framework guidance and best practices  
+* **[Bootstrap Documentation](https://getbootstrap.com/docs/)** – Responsive design patterns and component implementation  
+* **[Django-allauth Documentation](https://django-allauth.readthedocs.io/)** – Authentication system integration and customization  
+* **[Summernote Documentation](https://summernote.org/)** – Rich text editor implementation and configuration  
+* **[PostgreSQL Documentation](https://www.postgresql.org/docs/)** – Database optimization and query performance  
+* **[Heroku Dev Center](https://devcenter.heroku.com/)** – Deployment guides and platform-specific configurations  
+
 
 ## **Development Support:**
-* **Stack Overflow Community** - Problem-solving, debugging solutions, and code optimization techniques
-* **MDN Web Docs** - HTML5, CSS3, and JavaScript standards and best practices
-* **GitHub Community** - Open source inspiration and collaborative development patterns
-* **Python Community** - Code standards, security practices, and performance optimization
+* **[Stack Overflow](https://stackoverflow.com/)** – Problem-solving, debugging solutions, and code optimization techniques  
+* **[MDN Web Docs](https://developer.mozilla.org/)** – HTML5, CSS3, and JavaScript standards and best practices  
+* **[GitHub Community](https://github.com/)** – Open source inspiration and collaborative development patterns  
+* **[Python Community](https://www.python.org/community/)** – Code standards, security practices, and performance optimization  
+
 
 ## **Content & Testing:**
 * **Sample Content** - Original blog posts created for testing and demonstration purposes
@@ -665,19 +667,19 @@ My mentor at Code Institute, whose exceptional guidance, patience, and technical
 Their expertise and dedication have made a lasting impact on my learning journey.
 
 ### **Code Institute Community:**
-* **Slack Community** - Invaluable peer support, code reviews, and collaborative problem-solving throughout development
-* **Student Support Team** - Always available for technical guidance, deadline extensions, and career advice
-* **Fellow Students** - Peer code reviews, testing assistance, and motivational support during challenging phases
+* **[Code Institute](https://codeinstitute.net/)** – Academic program and student support.
+* **[Slack Community](https://slack.com/)** – Peer support and collaborative learning platform.
 
-### **Technical Mentors:**
-* **Django Community Contributors** - Exceptional documentation, tutorials, and community support that made rapid development possible
-* **Bootstrap Team** - Responsive framework that enabled mobile-first design implementation
-* **Open Source Maintainers** - All library and framework contributors whose work made this project achievable
+## **Technical Mentors / Open Source Tools**
+* **[Django Community](https://www.djangoproject.com/community/)** – Exceptional documentation, tutorials, and support.
+* **[Bootstrap Team](https://getbootstrap.com/)** – Responsive framework for mobile-first design.  
+* **[Open Source Maintainers](https://opensource.org/)** – Library and framework contributors.  
+
 
 ### **Testing & Feedback Contributors:**
-* **Family and Friends** - Patient beta testing, user experience feedback, and content suggestions
-* **Early Platform Users** - Valuable usability insights, bug reports, and feature recommendations
-* **Content Contributors** - Initial community members who helped populate forums with authentic stories
+* **Family and Friends** - Patient beta testing, user experience feedback, and content suggestions.
+* **Early Platform Users** - Valuable usability insights, bug reports, and feature recommendations.
+* **Content Contributors** - Initial community members who helped populate forums with authentic stories.
 
 ### **Personal Support System:**
 * **Family Members** - Understanding and support during intensive development periods and late-night coding sessions

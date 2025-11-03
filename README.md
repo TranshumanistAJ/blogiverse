@@ -512,10 +512,9 @@ source: [Mermaid](https://mermaid.live/edit#pako:eNqNU8tu2zAQ_BWCQG6OIb-qWMfm0UP
 * **jQuery** - JavaScript library for DOM manipulation and AJAX functionality
 
 ### ***Tools & Programs:***
-* **Git & GitHub** - Version control system and collaborative development platform
-* **Heroku** - Cloud platform for application deployment and hosting
-* **Neon** - PostgreSQL database hosting service for production environment
-* **VS Code** - Integrated development environment with Python extensions
+* **Git & GitHub** - Version control system and collaborative development platform.
+* **Heroku** - Cloud platform for application deployment and hosting.
+* **VS Code** - Integrated development environment with Python extensions.
 * **Chrome DevTools** - Testing, debugging, and performance optimization tools
 
 ### ***Database:***
